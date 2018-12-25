@@ -4,8 +4,31 @@
 <!-- 设置为IUserDao接口方法提供sql语句配置 -->
 <mapper namespace="com.hello.dao.IUserDao">
 
-    <select id="selectUser" resultType="User" parameterType="long">
-        SELECT * FROM user WHERE id = #{id}
+<select id="selectUser" resultType="User" parameterType="long">
+        SELECT * FROM userinfo WHERE id = #{id}
     </select>
-
+<insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="Id">
+        insert into userinfo(username,password,code,email,linked,temporaryid) values (#{username},#{password},#{code},#{email},0,0)
+    </insert>
+<select id="findByUsername" resultType="User" parameterType="String">
+        select * from userinfo where username = #{username}
+    </select>
+    <select id="findLinkedNumByEmail" resultType="long" parameterType="String">
+        select count(code) from userinfo where email = #{email} and linked = "1"
+    </select>
+    <select id="findLinkedNumByUsername" resultType="long" parameterType="String">
+        select count(code) from userinfo where username = #{username} and linked = "1"
+    </select>
+<select id="findByTemporaryID" resultType="User" parameterType="long">
+    select * from userinfo where temporaryid = #{temporaryid}
+</select>
+<select id="findByCode" resultType="User" parameterType="long">
+        select * from userinfo where code = #{code}
+    </select>
+<select id="findByEmail" resultType="User" parameterType="String">
+        select * from userinfo where email = #{email}
+    </select>
+    <update id="modifyUser" parameterType="User" keyProperty="Id">
+        update userinfo set username = #{username},password = #{password},code = #{code},email = #{email},linked = #{linked},temporaryid = #{temporaryid} where id = #{id}
+    </update>
 </mapper>

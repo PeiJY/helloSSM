@@ -14,12 +14,35 @@ public class User {
     private String email;
     private String password;
     private String username;
-    private String role;
-    private int status;
-    private Date regTime;
-    private String regIp;
+    private long code;
+    private long linked;
+    private long temporaryid;
+
+    public long getTemporaryid(){return temporaryid;}
+
+    public void setTemporaryid(long temporaryid){this.temporaryid=temporaryid;}
 
     public User() {
+        System.out.println("model successful");
+        this.id = 1;
+        this.password = "1";
+        this.username= "1";
+        this.temporaryid = 0;
+    }
+
+    public User(long id,String username, String password){
+        this.id = id;
+        this.password = password;
+        this.username = username;
+        this.temporaryid = 0;
+    }
+
+    public User(long id,String username, String password, String email){
+        this.id = id;
+        this.password = password;
+        this.username = username;
+        this.email = email;
+        this.temporaryid = 0;
     }
 
     public long getId() {
@@ -28,14 +51,6 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {
@@ -54,49 +69,34 @@ public class User {
         this.username = username;
     }
 
-    public String getRole() {
-        return role;
-    }
+    public String getEmail(){return email;}
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+    public void setEmail(String e){email=e;}
 
-    public int getStatus() {
-        return status;
-    }
+    public long getLinked(){return linked;}
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+    public void setLinked(long l){linked=l;}
 
-    public Date getRegTime() {
-        return regTime;
-    }
+    public void setCode(long code){this.code=code;}
 
-    public void setRegTime(Date regTime) {
-        this.regTime = regTime;
-    }
-
-    public String getRegIp() {
-        return regIp;
-    }
-
-    public void setRegIp(String regIp) {
-        this.regIp = regIp;
-    }
+    public long getCode(){return this.code;}
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", username='" + username + '\'' +
-                ", role='" + role + '\'' +
-                ", status=" + status +
-                ", regTime=" + regTime +
-                ", regIp='" + regIp + '\'' +
+                ", email='" + email + '\'' +
+                ", code='" + String.valueOf(code) + '\'' +
+                ",temporaryid= '"+ String.valueOf(temporaryid)+"\'"+
                 '}';
+    }
+
+    public String returnMassage(){
+        return "{"+
+                "\"username\":\"" + username + '\"' +
+                ",\"email\":\"" + email + '\"' +
+                ",\"temporaryid\":\""+ String.valueOf(temporaryid)+"\""+"}";
     }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.hello.dao.IPictureDao">
+
+<select id="selectPicture" resultType="Picture" parameterType="long">
+        SELECT * FROM picture WHERE pictureid = #{pictureid}
+</select>
+        <select id="findByName" resultType="Picture" parameterType="String">
+        SELECT * FROM picture WHERE filename = #{filename}
+</select>
+<select id="findAllByObjectId" resultType="Picture" parameterType="long">
+SELECT * FROM picture WHERE objectid = #{objectid}
+</select>
+<insert id="insertPicture" parameterType="Picture" useGeneratedKeys="true" keyProperty="pictureid">
+        insert into picture(pictureid,name,objectid,filename) values (#{pictureid},#{name},#{objectid},#{filename})
+</insert>
+<update id="modifyPic" parameterType="Picture" keyProperty="pictureid">
+update picture set name = #{name},pictureid = #{pictureid},filename = #{filename},objectid = #{objectid} where pictureid = #{pictureid}
+</update>
+        <delete id="deletePic" parameterType="long" >
+                delete from picture where pictureid = #{pictureid}
+        </delete>
+</mapper>

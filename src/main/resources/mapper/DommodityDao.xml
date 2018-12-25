@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.hello.dao.IDommodityDao">
+
+    <select id="selectDommodity" resultType="Dommodity" parameterType="long">
+        SELECT * FROM dommodity WHERE id = #{id}
+
+    </select>
+    <insert id="insertDommodity" parameterType="Dommodity" useGeneratedKeys="true" keyProperty="id">
+        insert into dommodity(name,description,ownerid,status,putawayTime,availabletime,price,address,paytype,operation) values (#{name},#{description},#{ownerid},#{status},#{putawayTime, jdbcType=TIMESTAMP},#{availableTime, jdbcType=TIMESTAMP},#{price},#{address},#{paytype},#{operation})
+    </insert>
+<select id="findByName" resultType="Dommodity" parameterType="String">
+        select * from dommodity where name = #{name}
+    </select>
+    <select id="selectAll" resultType="Dommodity" parameterType="String">
+        select * from dommodity
+    </select>
+    <!-- 需要用动态拼接SQL改进-->
+    <select id="conditionalSelete" resultType="Dommodity">
+        select * from dommoditytype left join dommodity on dommodityid = id ${conditions} ${orders} ${number}
+    </select>
+    <update id="modifyDommodity" parameterType="Dommodity" keyProperty="Id">
+        update dommodity set name = #{name},description = #{description},ownerid = #{ownerid},status = #{status},paytype = #{paytype},putawayTime = #{putawayTime, jdbcType=TIMESTAMP},availabletime = #{availableTime, jdbcType=TIMESTAMP},price = #{price},address=#{address},operation=#{operation} where id = #{id}
+    </update>
+    <insert id="subscribe" parameterType="Subscription" useGeneratedKeys="true" keyProperty="id">
+        insert into subscription(userid,dommodityid,time) values (#{userid},#{dommodityid},#{time})
+    </insert>
+    <insert id="report" parameterType="Report" useGeneratedKeys="true" keyProperty="reportid">
+        insert into report(reporterid,reason,date,objectid) values (#{reporterid},#{reason},#{date},#{objectid})
+    </insert>
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.hello.dao.IOrderDao">
+
+<select id="selectOrder" resultType="Order" parameterType="long">
+        SELECT * FROM `order` WHERE orderid = #{orderid}
+</select>
+<select id="findAllAsSeller" resultType="Order" parameterType="long">
+SELECT * FROM `order` WHERE sellerid = #{userid} and initiator = "S"
+</select>
+        <select id="findAllAsBuyer" resultType="Order" parameterType="long">
+SELECT * FROM `order` WHERE buyerid = #{userid} and initiator = "B"
+</select>
+<insert id="insertOrder" parameterType="Order" useGeneratedKeys="true" keyProperty="orderid">
+        insert into
+        `order`(starttime,endtime,initiator,buyerid,sellerid,dommodityid,number,price,status)
+        values (#{starttime, jdbcType=TIMESTAMP},#{endtime, jdbcType=TIMESTAMP},#{initiator},#{buyerid},#{sellerid},#{dommodityid},#{number},#{price},#{status})
+</insert>
+
+<update id="modifyOrder" parameterType="Order" keyProperty="orderid">
+update `order` set starttime = #{starttime, jdbcType=TIMESTAMP},endtime = #{endtime, jdbcType=TIMESTAMP},initiator = #{initiator},buyerid = #{buyerid},sellerid = #{sellerid},dommodityid = #{dommodityid},number = #{number},price = #{price},status = #{status} where orderid = #{orderid}
+</update>
+</mapper>
