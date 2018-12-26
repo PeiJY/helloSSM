@@ -19,6 +19,26 @@
     </properties>
 
     <dependencies>
+
+
+        <!-- WEBSOCKET -->
+        <dependency>
+            <groupId>javax.websocket</groupId>
+            <artifactId>javax.websocket-api</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-messaging</artifactId>
+            <version>4.0.5.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>4.0.5.RELEASE</version>
+        </dependency>
+        <!-- WEBSOCKET OVER-->
+
         <!-- java ee -->
         <dependency>
             <groupId>javax</groupId>
@@ -32,13 +52,6 @@
             <artifactId>spring-context-support</artifactId>
             <version>4.2.6.RELEASE</version>
         </dependency>
-        <!--
-        <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>1.4.7</version>
-        </dependency>
-        -->
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
