@@ -32,7 +32,7 @@ public class SystemWebSocketHandler implements WebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         System.out.print("连接成功");
         //users.add(session);
-        UserMap.put((Integer)session.getAttributes().get("userId"),session);
+        //UserMap.put((Integer)session.getAttributes().get("userid"),session);
         //for(WebSocketSession a : users){
         //    System.out.println(a.getAttributes());
        //}
@@ -49,7 +49,18 @@ public class SystemWebSocketHandler implements WebSocketHandler {
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
         String schatMessage = (String) message.getPayload();//用户输入
         System.out.println("用户输入" + schatMessage);
-        sendMessageToUsers(message);
+        String contents[] = schatMessage.split(",");
+        if(contents.length>=2) {
+            if (contents[0].equals("login")) {
+                Integer userid = Integer.valueOf(contents[1]);
+                UserMap.put(userid, session);
+            } else {
+                Integer fromuserid = Integer.valueOf(contents[1]);
+                Integer touserid = Integer.valueOf(contents[2]);
+                UserMap.get(touserid).sendMessage(message);
+            }
+        }
+        //sendMessageToUsers(message);
     }
 
     @Override
@@ -96,11 +107,14 @@ public class SystemWebSocketHandler implements WebSocketHandler {
         }
 
     }
-    private void sendMessageToUser(WebSocketMessage<?> message,int userId){
-        String content=(String)message.getPayload();
-        String contents[] = content.split(",");
-        WebSocketSession session = UserMap.get(contents[0]);
-        //session.sendMessage(contents[1]);
+    private void sendMessageToUser(WebSocketMessage<?> message,WebSocketSession session ){
+        try {
+            if (session.isOpen()) {
+                session.sendMessage(message);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void removeUser(WebSocketSession session) {
@@ -108,7 +122,7 @@ public class SystemWebSocketHandler implements WebSocketHandler {
         //users.remove(session.getId());
         for (Map.Entry<Integer, WebSocketSession> entry : UserMap.entrySet()) {
             if (entry.getValue().equals(session)) {
-                UserMap.remove(session);
+                UserMap.remove(entry);
             }
         }
     }

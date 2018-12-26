@@ -21,12 +21,12 @@ public class SpringWebSocketHandlerInterceptor extends HttpSessionHandshakeInter
         if (request instanceof ServletServerHttpRequest) {
             System.out.println("FINISHED");
             ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) request;
-            HttpSession session = servletRequest.getServletRequest().getSession(false);
+            HttpSession session = servletRequest.getServletRequest().getSession();
             if (session != null) {
                 System.out.println("session != null");
-                System.out.println(session.getAttributeNames());
+                //System.out.println(session.getAttributeNames());
                 //使用userName区分WebSocketHandler，以便定向发送消息
-                IMUser currentUser=(IMUser)session.getAttribute("CURRENT_USER");
+                /*IMUser currentUser=(IMUser)session.getAttribute("CURRENT_USER");
                 System.out.println(currentUser.toString());
                 System.out.println(currentUser.getId());
                 String userName = currentUser.getUsername();
@@ -34,10 +34,10 @@ public class SpringWebSocketHandlerInterceptor extends HttpSessionHandshakeInter
                 System.out.println(userName);
                 if (userName == null) {
                     userName = "default-system";
-                }
-                //Random random  = new Random();
-                //int userId = random.nextInt(1000);
-                //String userName = String.valueOf(userId);
+                }*/
+                Random random  = new Random();
+                int userId = random.nextInt(1000);
+                String userName = String.valueOf(userId);
                 attributes.put("WEBSOCKET_USERNAME", userName);
                 attributes.put("userId",userId);
             }
