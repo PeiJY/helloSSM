@@ -25,8 +25,8 @@ public class PictureController {
     @Autowired
     private IPictureService pictureService;
 
-    //private static String picPath = "/var/lib/tomcat8/webapps/helloSSM/pic/";
-    private static String picPath = "F:/text/helloSSM/target/helloSSM/pic/";
+    private static String picPath = "/var/lib/tomcat8/webapps/helloSSM/pic/";
+    //private static String picPath = "F:/text/helloSSM/target/helloSSM/pic/";
 
 
     @RequestMapping("uploadPicture")//没有用户检测
@@ -59,8 +59,8 @@ public class PictureController {
             dou = ",";
         }
         result+="]";
-        if (names.length>0)return  "{\"returncode\":\"200\",\"pictureIdSet\":"+result+"}";
-        else return  "{\"returncode\":\"201\"}";
+        return  "{\"returncode\":\"200\",\"picnumber\":\""+String.valueOf(names.length)+"\"pictureIdSet\":"+result+"}";
+
     }
 
 /*

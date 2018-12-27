@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.hello.dao.ISocialDao">
+
+<select id="getPersonalChatRecord" resultType="ChatRecord" parameterType="String">
+        SELECT * FROM chatrecord WHERE recvname = #{recvname}
+    </select>
+    <delete id="removePersonalChatRecord" parameterType="String" >
+                delete from chatrecord WHERE recvname = #{recvname}
+        </delete>
+<insert id="subscribe" parameterType="Subscribe" useGeneratedKeys="true" keyProperty="Id">
+        insert into subscribe(scruserid,tousername) values (#{scruserid},#{tousername})
+    </insert>
+    <insert id="setChatRecord" parameterType="ChatRecord" useGeneratedKeys="true" keyProperty="Id">
+        insert into chatrecord(message,time,srcname,recvname) values (#{message},#{time},#{srcname},#{recvname})
+    </insert>
+    <delete id="unSubscribe" parameterType="long" >
+                delete from subscribe where id = #{id}
+        </delete>
+    <select id="getSubscribe" resultType="Subscribe" >
+        select * from subscribe where scruserid = #{scruserid} and tousername = #{tousername}
+    </select>
+    <select id="getSubscribeList" resultType="Subscribe" parameterType="long">
+        select * from subscribe where scruserid = #{scruserid}
+    </select>
+</mapper>

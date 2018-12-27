@@ -1,66 +1,74 @@
 package com.hello.controller.IM;
 
+import com.hello.model.ChatRecord;
+import com.hello.model.User;
+import com.hello.service.ISocialService;
 import com.hello.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.web.socket.CloseStatus;
-import org.springframework.web.socket.WebSocketHandler;
-import org.springframework.web.socket.WebSocketMessage;
-import org.springframework.web.socket.WebSocketSession;
-
+import org.springframework.web.socket.*;
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
+
 
 @Component
-//@WebAppConfiguration("src/main/resources")
-//@Service
 public class SystemWebSocketHandler implements WebSocketHandler {
-    //private static ArrayList<WebSocketSession> users = new ArrayList<WebSocketSession>();
-    private static HashMap<Integer , WebSocketSession> UserMap = new HashMap<>();
+    private static HashMap<String , WebSocketSession> ChatUserMap = new HashMap<>();
+
     @Resource
     @Autowired
     private IUserService userService;
 
-
+    @Resource
+    @Autowired
+    private ISocialService socialService;
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         System.out.print("连接成功");
-        //users.add(session);
-        //UserMap.put((Integer)session.getAttributes().get("userid"),session);
-        //for(WebSocketSession a : users){
-        //    System.out.println(a.getAttributes());
-       //}
-        Random random = new Random();
-        //System.out.println("当前用户数量: " + users.size());
-        System.out.println("当前用户数量: " + UserMap.size());
-        String username= (String) session.getAttributes().get("WEBSOCKET_USERNAME");
-        int userId=random.nextInt(1000);//Integer)session.getAttributes().get("userId");
-        System.out.println("用户名 "+username);
-        System.out.println("用户ID "+userId);
     }
 
     @Override
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
         String schatMessage = (String) message.getPayload();//用户输入
+        TextMessage offlinemsg = new TextMessage("system,Reserver offline");
+        TextMessage formatmsg = new TextMessage("system,Unknown message format");
+        TextMessage idmsg = new TextMessage("system,Temporaryid illegal");
+        TextMessage successmsg = new TextMessage("system,Success");
         System.out.println("用户输入" + schatMessage);
         String contents[] = schatMessage.split(",");
         if(contents.length>=2) {
-            if (contents[0].equals("login")) {
-                Integer userid = Integer.valueOf(contents[1]);
-                UserMap.put(userid, session);
-            } else {
-                Integer fromuserid = Integer.valueOf(contents[1]);
-                Integer touserid = Integer.valueOf(contents[2]);
-                UserMap.get(touserid).sendMessage(message);
+            String id = contents[1];
+            switch (contents[0]){
+                case "login":
+                    long tempoararyid = Long.parseLong(id);
+                    User user = userService.findUserByTemporaryid(tempoararyid);
+                    if(user==null) this.sendMessageToUser(idmsg,session);
+                    else {
+                        String username = user.getUsername();
+                        ChatUserMap.put(username, session);
+                        this.sendMessageToUser(successmsg,session);
+                    }
+                    break;
+                case "chat":
+                    String username = "";
+                    for (Map.Entry<String, WebSocketSession> entry : ChatUserMap.entrySet()) {
+                        if (entry.getValue().equals(session)) {
+                            username=entry.getKey();
+                        }
+                    }
+                    String recvname1 = contents[1];
+                    if( ChatUserMap.get(recvname1)!=null)sendMessageToUser((message),ChatUserMap.get(recvname1));
+                    else {
+                        session.sendMessage(offlinemsg);
+                        socialService.setChatRecord(new ChatRecord(username+","+schatMessage));
+                    }
+                    break;
+                default: sendMessageToUser(formatmsg,session);
             }
         }
-        //sendMessageToUsers(message);
+        else session.sendMessage(formatmsg);
     }
 
     @Override
@@ -68,10 +76,9 @@ public class SystemWebSocketHandler implements WebSocketHandler {
         if (session.isOpen()) {
             session.close();
         }
-        //users.remove(session);
-        for (Map.Entry<Integer, WebSocketSession> entry : UserMap.entrySet()) {
+        for (Map.Entry<String, WebSocketSession> entry : ChatUserMap.entrySet()) {
             if(entry.getValue().equals(session)){
-                UserMap.remove(session);
+                ChatUserMap.remove(session);
             }
         }
     }
@@ -80,20 +87,12 @@ public class SystemWebSocketHandler implements WebSocketHandler {
     public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception {
         System.out.print("关闭连接    ");
         removeUser(session);
-        //System.out.println("用户数量: " + users.size());
-        System.out.println("用户数量: " + UserMap.size());
+        System.out.println("用户数量: " + ChatUserMap.size());
     }
+
+    //广播到全部用户
     private void sendMessageToUsers(WebSocketMessage<?> message) {
-        /*for (WebSocketSession user : users) {
-            try {
-                if (user.isOpen()) {
-                    user.sendMessage(message);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }*/
-        for (Map.Entry<Integer, WebSocketSession> entry : UserMap.entrySet()) {
+        for (Map.Entry<String, WebSocketSession> entry : ChatUserMap.entrySet()) {
             System.out.println(entry.getKey());
             System.out.println(entry.getValue());
             WebSocketSession session = entry.getValue();
@@ -118,11 +117,9 @@ public class SystemWebSocketHandler implements WebSocketHandler {
     }
 
     private void removeUser(WebSocketSession session) {
-        //users.remove(session);
-        //users.remove(session.getId());
-        for (Map.Entry<Integer, WebSocketSession> entry : UserMap.entrySet()) {
+        for (Map.Entry<String, WebSocketSession> entry : ChatUserMap.entrySet()) {
             if (entry.getValue().equals(session)) {
-                UserMap.remove(entry);
+                ChatUserMap.remove(entry);
             }
         }
     }

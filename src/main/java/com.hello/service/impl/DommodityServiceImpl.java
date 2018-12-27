@@ -85,7 +85,9 @@ public class DommodityServiceImpl implements IDommodityService {
         Dommodity[] all = dommodityrDao.conditionalSelete(conditions,orders,number);
         Object[][] ud = new Object[all.length][2];
         for(int i=0;i<all.length;i++){
-            ud[i][0] = all[i];
+            Dommodity dm = all[i];
+            dm.setType(dommodityTypeDao.findType(dm.getId()));
+            ud[i][0] = dm;
             ud[i][1] = userDao.selectUser(all[i].getOwner());
         }
         return ud;

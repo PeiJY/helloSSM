@@ -63,11 +63,6 @@ public class Dommodity {
     }
 
     public Dommodity(){
-        this.id = 0;
-        this.name = "";
-        this.description = "";
-        this.ownerid = 0;
-        this.status = Status.SELLED;
     }
 
     public long getId() {
@@ -161,6 +156,13 @@ public class Dommodity {
 
 
     public String Message(String owner) {
+        String types = "[";
+        String dou = "";
+        for(String i: this.type){
+            types+=dou+"\""+i+"\"";
+            dou = ",";
+        }
+        types +="]";
         return "{" +
                 "\"id\":\"" + id +"\""+
                 ", \"name\":\"" + name + "\"" +
@@ -173,6 +175,7 @@ public class Dommodity {
                 ", \"price\":\"" + price + '\"' +
                 ", \"address\":\"" + address + '\"' +
                 ", \"paytype\":\"" + paytype + '\"' +
+                ", \"type\":" + types +
                 '}';
     }
 

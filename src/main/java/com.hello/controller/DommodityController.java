@@ -102,6 +102,17 @@ public class DommodityController {
     }
 
 
+    @RequestMapping ("individualSelect")
+    @ResponseBody
+    public String individualSelect(@RequestParam String username){
+        String result="";
+        User user = userService.findUserByUsername(username);
+        long userid = user.getId();
+        String conditions = "where ownerid =" + String.valueOf(user.getId()+" and status = \"SELLING\"");
+        result+=conditionalSelete(conditions,"order by putawaytime desc","");
+        return result;
+    }
+
     @RequestMapping ("conditionalSelect")
     @ResponseBody
     public String conditionalSelete(@RequestParam String conditions,@RequestParam String orders,@RequestParam String number){

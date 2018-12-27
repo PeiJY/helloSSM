@@ -165,4 +165,10 @@ public class UserServiceImpl implements IUserService {
         User user = userDao.findByTemporaryID(temporaryid);
         return user;
     }
+
+    @Override
+    public User findUserByUsername(String username){
+        User user = userDao.findByUsername(username);
+        return user;
+    }
 }

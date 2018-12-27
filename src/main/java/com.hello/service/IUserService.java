@@ -24,4 +24,6 @@ public interface IUserService {
 
     public User findUserByTemporaryid(long temporaryid);
 
+    public User findUserByUsername(String username);
+
 }
