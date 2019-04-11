@@ -44,6 +44,7 @@ public class Order {
     public String returnMassage(String buyername,String sellername){
         return "{"+
                 "\"orderid\":\"" + String.valueOf(orderid) + '\"' +
+                "\"dommodityid\":\"" + String.valueOf(dommodityid) + '\"' +
                 ",\"starttime\":\"" + starttime + '\"' +
                 ",\"endtime\":\"" + endtime + '\"' +
                 ",\"initiator\":\"" + initiator + '\"' +

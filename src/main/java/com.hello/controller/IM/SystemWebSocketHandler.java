@@ -26,7 +26,11 @@ public class SystemWebSocketHandler implements WebSocketHandler {
     private ISocialService socialService;
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        System.out.print("连接成功");
+        System.out.println("连接成功");
+        for (Map.Entry<String, WebSocketSession> entry : ChatUserMap.entrySet()) {
+            System.out.println(entry.getValue().isOpen());
+
+        }
     }
 
     @Override
@@ -47,19 +51,40 @@ public class SystemWebSocketHandler implements WebSocketHandler {
                     if(user==null) this.sendMessageToUser(idmsg,session);
                     else {
                         String username = user.getUsername();
-                        ChatUserMap.put(username, session);
+                        //检查是否顶掉别人
+                        int edgeout=0;
+                        for (Map.Entry<String, WebSocketSession> entry : ChatUserMap.entrySet()) {
+                            if (entry.getKey().equals(username)) {
+                                entry.setValue(session);
+                                edgeout = 1;
+                                break;
+                            }
+                        }
+                        if(edgeout==0) {
+                            ChatUserMap.put(username, session);
+                        }
                         this.sendMessageToUser(successmsg,session);
                     }
                     break;
                 case "chat":
                     String username = "";
+                    //检测发送者是否登录，不处理被顶掉
                     for (Map.Entry<String, WebSocketSession> entry : ChatUserMap.entrySet()) {
                         if (entry.getValue().equals(session)) {
                             username=entry.getKey();
                         }
                     }
+                    if(username.equals("")){
+                        TextMessage msg = new TextMessage("system,Unlogin");
+                        sendMessageToUser(msg,session);
+                        break;
+                    }
+                    //将发送者用户名拼接入信息中
+                    String content = contents[0] + ","+username+schatMessage.substring(contents[0].length());
+                    TextMessage msg = new TextMessage(content);
+
                     String recvname1 = contents[1];
-                    if( ChatUserMap.get(recvname1)!=null)sendMessageToUser((message),ChatUserMap.get(recvname1));
+                    if( ChatUserMap.get(recvname1)!=null && ChatUserMap.get(recvname1).isOpen())sendMessageToUser((msg),ChatUserMap.get(recvname1));
                     else {
                         session.sendMessage(offlinemsg);
                         socialService.setChatRecord(new ChatRecord(username+","+schatMessage));
@@ -75,10 +100,10 @@ public class SystemWebSocketHandler implements WebSocketHandler {
     public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
         if (session.isOpen()) {
             session.close();
-        }
-        for (Map.Entry<String, WebSocketSession> entry : ChatUserMap.entrySet()) {
-            if(entry.getValue().equals(session)){
-                ChatUserMap.remove(session);
+            for (Map.Entry<String, WebSocketSession> entry : ChatUserMap.entrySet()) {
+                if(entry.getValue().equals(session)){
+                    ChatUserMap.remove(entry);
+                }
             }
         }
     }

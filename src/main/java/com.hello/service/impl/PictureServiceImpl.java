@@ -27,7 +27,7 @@ public class PictureServiceImpl implements IPictureService {
     @Autowired
     private IPictureDao pictureDao;
 
-    private static String picPath = "/var/lib/tomcat8/webapps/helloSSM/pic/";
+    private static String picPath = "/var/lib/tomcat8/pic/";
     //private static String picPath = "F:/text/helloSSM/target/helloSSM/pic/";
     private String sls = "/";
    //private String sls = "\\";

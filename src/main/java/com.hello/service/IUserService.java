@@ -20,6 +20,8 @@ public interface IUserService {
 
     public int changeEmail(String username, String password,String email);
 
+    public int changePassword(String username, String password,String newpassword);
+
     public User findUser(long userid);
 
     public User findUserByTemporaryid(long temporaryid);

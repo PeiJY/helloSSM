@@ -24,7 +24,7 @@ public class SocialController {
     @Autowired
     private ISocialService socialService;
 
-    @RequestMapping ("charRecord")
+    @RequestMapping ("charRecord")//用于接收数据库中发给自己的的聊天记录
     @ResponseBody
     public String login(@RequestParam long temporaryid) {
         User user = userService.findUserByTemporaryid(temporaryid);

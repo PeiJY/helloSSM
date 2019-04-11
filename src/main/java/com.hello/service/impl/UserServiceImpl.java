@@ -135,6 +135,15 @@ public class UserServiceImpl implements IUserService {
         }
         return 2; //用户名密码错误
     }
+    public int changePassword(String username, String password,String newpassword) {
+        User user = userDao.findByUsername(username);
+        if (user != null && user.getPassword().equals(password)) {
+            user.setPassword(newpassword);
+            userDao.modifyUser(user);
+            return 0;
+        }
+        return 2; //用户名密码错误
+    }
 
 
     @Override

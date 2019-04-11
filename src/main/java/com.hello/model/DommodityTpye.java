@@ -1,5 +1,5 @@
 package com.hello.model;
 
 public enum DommodityTpye {
-    服务, 化妆, 交通, 书本, 服饰, 食品, 电子,娱乐
+    服务, 化妆品, 书本, 服饰, 食品, 电子产品,信息资源, 演出, 通行,
 }

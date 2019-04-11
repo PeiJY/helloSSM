@@ -116,6 +116,20 @@ public class UserController {
         }
     }
 
+    @RequestMapping("changePassword")
+    @ResponseBody
+    public String changePassword(@RequestParam String username,@RequestParam String password,@RequestParam String newpassword){
+        int check = this.userService.changePassword(username,password,newpassword);
+        if(check==0) {
+            System.out.println("change successfully");
+            return "{\"returncode\":\"200\"}";
+        }
+        else {
+            System.out.println("change fail");
+            return "{\"returncode\":\"201\"}";
+        }
+    }
+
     @RequestMapping("json")
     @ResponseBody
     public String jsonTest(@RequestBody String requestuser){

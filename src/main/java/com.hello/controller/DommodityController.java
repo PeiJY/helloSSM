@@ -68,9 +68,21 @@ public class DommodityController {
         int result = this.dommodityService.report(dommodityid,temporaryid,reason);
         if(result >=0)return "{\"returncode\":\"200\"}";
         else return "{\"returncode\":\"201\"}";
-
     }
 
+    @RequestMapping ("getAllType")
+    @ResponseBody
+    public String getAllType() {
+        String result = "{\"returncode\":\"200\",\"types\":[";
+        String dou = "";
+        for (DommodityTpye e : DommodityTpye.values()) {
+           result += dou + "\"" +e.toString() +"\"";
+           dou =",";
+        }
+        result += "]}";
+        return result;
+    }
+/*
     @RequestMapping ("selectAll")
     @ResponseBody
     public String selectAll(){
@@ -90,7 +102,7 @@ public class DommodityController {
         result += "]}";
         return result;
     }
-
+*/
     @RequestMapping ("personalSelect")
     @ResponseBody
     public String personalDommodity(@RequestParam long temporaryid){

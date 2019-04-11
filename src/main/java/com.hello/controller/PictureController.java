@@ -25,7 +25,7 @@ public class PictureController {
     @Autowired
     private IPictureService pictureService;
 
-    private static String picPath = "/var/lib/tomcat8/webapps/helloSSM/pic/";
+    private static String picPath = "/var/lib/tomcat8/pic/";
     //private static String picPath = "F:/text/helloSSM/target/helloSSM/pic/";
 
 
@@ -59,7 +59,7 @@ public class PictureController {
             dou = ",";
         }
         result+="]";
-        return  "{\"returncode\":\"200\",\"picnumber\":\""+String.valueOf(names.length)+"\"pictureIdSet\":"+result+"}";
+        return  "{\"returncode\":\"200\",\"picnumber\":\""+String.valueOf(names.length)+"\",\"pictureIdSet\":"+result+"}";
 
     }
 

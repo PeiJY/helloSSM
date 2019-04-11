@@ -36,7 +36,7 @@ public class OrderController {
                          @RequestParam long dommodityid,@RequestParam long number){
         long code = this.orderService.create(temporaryid,type,dommodityid,number);
         if(code >0)return "{\"returncode\":\"200\"}";
-        else return "{\"returncode\":\"201\"}";
+        else return "{\"returncode\":\"201\",\"reasoncode\":"+String.valueOf(code)+"}";
     }
 
     @RequestMapping("cancel")
