@@ -1,17 +1,17 @@
 package com.hello.service.impl;
 
-import com.sun.mail.util.MailSSLSocketFactory;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
-
-import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
-import java.security.GeneralSecurityException;
 import java.util.Properties;
-import javax.mail.Session;
-import javax.mail.Transport;
+
+/**
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
+ * desc
+ */
 
 public class MailService {
     private static final String HOST = "smtp.qq.com";

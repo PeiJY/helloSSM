@@ -15,6 +15,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
+/**
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
+ * desc
+ */
 
 @Service
 public class DommodityServiceImpl implements IDommodityService {

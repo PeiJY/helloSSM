@@ -1,17 +1,17 @@
 package com.hello.service.impl;
+
 import java.util.Random;
 import com.hello.dao.IUserDao;
-//import com.hello.dao.impl.UserDaoImpl;
 import com.hello.model.User;
 import com.hello.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
-import javax.activation.*;
-import javax.annotation.Resource;
+/**
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
+ * desc
+ */
 
 @Service
 public class UserServiceImpl implements IUserService {

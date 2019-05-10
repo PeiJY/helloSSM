@@ -9,6 +9,11 @@ import org.springframework.web.socket.client.standard.WebSocketContainerFactoryB
 import org.springframework.web.socket.config.annotation.*;
 
 
+/**
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
+ * desc
+ */
 
 @Configuration
 @EnableWebMvc

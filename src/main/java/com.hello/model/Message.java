@@ -3,8 +3,11 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 /**
- * Created by Administrator on 2016/8/15.
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
+ * desc
  */
+
 public class Message {
 
     private int messageId;

@@ -17,6 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
 
+/**
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
+ * desc
+ */
 
 @Controller
 @RequestMapping("/picture")
@@ -32,7 +37,7 @@ public class PictureController {
     @RequestMapping("uploadPicture")//没有用户检测
     @ResponseBody
     public String uploadPicture(@RequestParam long objectid, @RequestParam MultipartFile pictureFile,@RequestParam String name) throws IOException {
-        if(pictureFile==null) return"{\"returncode\":\"201\"}";
+        if(pictureFile.isEmpty()) return"{\"returncode\":\"201\"}";
         String result = pictureService.insertPic(pictureFile,objectid,name);
         if (result.equals("-1"))return  "{\"returncode\":\"201\"}";
         else return "{\"returncode\":\"200\",\"filename\":\""+result+"\"}";

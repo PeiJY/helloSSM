@@ -1,18 +1,19 @@
 package com.hello.service.impl;
 
 import com.hello.dao.ISocialDao;
-import com.hello.dao.IUserDao;
 import com.hello.model.ChatRecord;
 import com.hello.model.Subscribe;
 import com.hello.model.User;
 import com.hello.service.ISocialService;
-import com.hello.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Random;
 
-//import com.hello.dao.impl.UserDaoImpl;
+/**
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
+ * desc
+ */
 
 @Service
 public class SocialServiceImpl implements ISocialService {

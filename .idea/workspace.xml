@@ -2,63 +2,105 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
+      <artifact name="helloSSM:war" />
       <artifact name="helloSSM:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="875324f7-2178-4f40-99c6-5be68ff1934f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.hello/controller/SocialController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.hello/dao/ISocialDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.hello/model/ChatRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.hello/model/Subscribe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/ISocialService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/SocialServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/SocialDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/helloSSM_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/helloSSM_war_exploded.xml" afterDir="false" />
+    <list default="true" id="875324f7-2178-4f40-99c6-5be68ff1934f" name="Default Changelist" comment="add doc, add search recommand">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.hello/model/WordEntry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/ISearchService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/SearchServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/Word2VEC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/controller/DommodityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/controller/DommodityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/IMUser.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/SpringWebSocketHandlerInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/SpringWebSocketHandlerInterceptor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/SystemWebSocketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/SystemWebSocketHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/WebSocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/WebSocketConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/controller/OrderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/controller/PictureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/controller/PictureController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/controller/SocialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/controller/SocialController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/dao/IDommodityDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/dao/IDommodityDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/dao/IDommodityTypeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/dao/IDommodityTypeDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/dao/IOrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/dao/IOrderDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/dao/IPictureDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/dao/IPictureDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/dao/ISocialDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/dao/ISocialDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/dao/IUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/dao/IUserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/model/ChatRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/model/ChatRecord.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/model/Dommodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/model/Dommodity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/model/DommodityTpye.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/model/DommodityTpye.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/model/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/model/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/model/PaymentType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/model/PaymentType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/model/Picture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/model/Picture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/model/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/model/Report.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/model/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/model/Status.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/model/Subscribe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/model/Subscribe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/model/Subscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/model/Subscription.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/service/IDommodityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/IDommodityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/service/IOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/IOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/service/IPictureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/IPictureService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/service/ISocialService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/ISocialService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/service/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/IUserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/DommodityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/DommodityServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/IM/MyHandShakeInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/IM/MyHandShakeInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/MailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/MailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/OrderServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/PictureServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/PictureServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/SocialServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/SocialServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/DommodityDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/DommodityDao.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/hello/controller/DommodityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/controller/DommodityController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/controller/IM/IMUser.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/hello/controller/IM/SpringWebSocketHandlerInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/controller/IM/SpringWebSocketHandlerInterceptor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/hello/controller/IM/SystemWebSocketHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/controller/IM/SystemWebSocketHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/hello/controller/IM/WebSocketConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/controller/IM/WebSocketConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/controller/OrderController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/hello/controller/PictureController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/controller/PictureController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/controller/SocialController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/controller/SocialController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/hello/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/model/ChatRecord.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/model/ChatRecord.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/hello/model/Dommodity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/model/Dommodity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/service/IUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/service/IUserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/model/DommodityTpye.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/model/DommodityTpye.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/model/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/model/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/model/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/model/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/model/PaymentType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/model/PaymentType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/model/Picture.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/model/Picture.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/model/Status.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/model/Status.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/model/Subscribe.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/model/Subscribe.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/model/Subscription.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/model/Subscription.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/model/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/hello/service/impl/DommodityServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/service/impl/DommodityServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/service/impl/IM/MyHandShakeInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/service/impl/IM/MyHandShakeInterceptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/service/impl/OrderServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/service/impl/OrderServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/hello/service/impl/PictureServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/service/impl/PictureServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/service/impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/DommodityDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/DommodityDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/service/impl/SocialServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/service/impl/SocialServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/helloSSM.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/helloSSM/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/DommodityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/DommodityController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/IM/IMUser.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/IM/SpringWebSocketHandlerInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/IM/SpringWebSocketHandlerInterceptor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/IM/SystemWebSocketHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/IM/SystemWebSocketHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/IM/WebSocketConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/IM/WebSocketConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/OrderController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/PictureController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/PictureController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/SocialController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/SocialController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/ChatRecord.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/ChatRecord.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/Dommodity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/Dommodity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/service/IUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/service/IUserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/DommodityTpye.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/DommodityTpye.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/PaymentType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/PaymentType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/Picture.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/Picture.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/Status.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/Status.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/Subscribe.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/Subscribe.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/Subscription.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/Subscription.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/model/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/service/impl/DommodityServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/service/impl/DommodityServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/service/impl/IM/MyHandShakeInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/service/impl/IM/MyHandShakeInterceptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/service/impl/OrderServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/service/impl/OrderServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/service/impl/PictureServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/service/impl/PictureServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/service/impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/mapper/DommodityDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/mapper/DommodityDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/lib/commons-logging-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/service/impl/SocialServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/service/impl/SocialServiceImpl.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,32 +109,38 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/helloSSM$Unnamed.ic" NAME="Unnamed Coverage Results" MODIFIED="1556427096018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
   <component name="FUSProjectUsageTrigger">
     <session id="491180201">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="64" />
-          <entry key="project.open.time.1" value="7" />
+          <entry key="project.closed" value="89" />
+          <entry key="project.open.time.1" value="8" />
           <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.15" value="3" />
           <entry key="project.open.time.16" value="1" />
-          <entry key="project.open.time.17" value="1" />
+          <entry key="project.open.time.17" value="2" />
           <entry key="project.open.time.18" value="2" />
-          <entry key="project.open.time.2" value="9" />
+          <entry key="project.open.time.2" value="13" />
           <entry key="project.open.time.21" value="1" />
+          <entry key="project.open.time.22" value="1" />
+          <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.25" value="1" />
-          <entry key="project.open.time.27" value="2" />
-          <entry key="project.open.time.28" value="1" />
-          <entry key="project.open.time.29" value="2" />
-          <entry key="project.open.time.3" value="4" />
-          <entry key="project.open.time.30" value="2" />
-          <entry key="project.open.time.31" value="3" />
+          <entry key="project.open.time.27" value="3" />
+          <entry key="project.open.time.28" value="4" />
+          <entry key="project.open.time.29" value="3" />
+          <entry key="project.open.time.3" value="7" />
+          <entry key="project.open.time.30" value="3" />
+          <entry key="project.open.time.31" value="4" />
           <entry key="project.open.time.32" value="1" />
-          <entry key="project.open.time.34" value="4" />
-          <entry key="project.open.time.35" value="5" />
+          <entry key="project.open.time.33" value="1" />
+          <entry key="project.open.time.34" value="7" />
+          <entry key="project.open.time.35" value="7" />
           <entry key="project.open.time.36" value="4" />
-          <entry key="project.open.time.37" value="3" />
+          <entry key="project.open.time.37" value="4" />
           <entry key="project.open.time.38" value="1" />
           <entry key="project.open.time.40" value="1" />
           <entry key="project.open.time.43" value="1" />
@@ -100,56 +148,58 @@
           <entry key="project.open.time.46" value="1" />
           <entry key="project.open.time.47" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="67" />
+          <entry key="project.opened" value="92" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="IPictureService" value="1" />
+          <entry key="ISearchService" value="1" />
           <entry key="MF" value="1" />
           <entry key="class" value="6" />
           <entry key="html" value="8" />
-          <entry key="java" value="447" />
-          <entry key="jsp" value="59" />
+          <entry key="java" value="645" />
+          <entry key="jsp" value="65" />
           <entry key="md" value="1" />
-          <entry key="properties" value="17" />
+          <entry key="properties" value="23" />
           <entry key="sql" value="3" />
-          <entry key="xml" value="135" />
+          <entry key="xml" value="147" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="6" />
           <entry key="HTML" value="8" />
-          <entry key="JAVA" value="448" />
-          <entry key="JSP" value="59" />
+          <entry key="JAVA" value="647" />
+          <entry key="JSP" value="65" />
           <entry key="Manifest" value="1" />
           <entry key="Markdown" value="1" />
-          <entry key="Properties" value="17" />
+          <entry key="Properties" value="23" />
           <entry key="SQL" value="3" />
-          <entry key="XML" value="135" />
+          <entry key="XML" value="147" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="1" />
           <entry key="html" value="46" />
-          <entry key="java" value="22830" />
+          <entry key="java" value="28378" />
           <entry key="jsp" value="927" />
-          <entry key="properties" value="42" />
-          <entry key="xml" value="1871" />
+          <entry key="properties" value="72" />
+          <entry key="txt" value="29" />
+          <entry key="xml" value="1877" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="46" />
-          <entry key="JAVA" value="22830" />
+          <entry key="JAVA" value="28378" />
           <entry key="JSP" value="926" />
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Properties" value="42" />
+          <entry key="PLAIN_TEXT" value="30" />
+          <entry key="Properties" value="72" />
           <entry key="RegExp" value="1" />
           <entry key="SQL" value="6" />
-          <entry key="XML" value="1865" />
+          <entry key="XML" value="1871" />
         </counts>
       </usages-collector>
     </session>
@@ -199,76 +249,56 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/PictureController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/Word2VEC.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="28" column="72" selection-start-line="28" selection-start-column="72" selection-end-line="28" selection-end-column="72" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="17" column="27" lean-forward="true" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/IDommodityService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/DommodityTypeDao.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/dao/ISocialDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+            <state relative-caret-position="321">
+              <caret line="37" column="48" selection-start-line="37" selection-start-column="48" selection-end-line="37" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#417#418#0" expanded="true" />
+                <element signature="e#438#439#0" expanded="true" />
+                <element signature="method#loadGoogleModel#0;class#Word2VEC#0" />
+                <element signature="method#loadJavaModel#0;class#Word2VEC#0" />
+                <element signature="method#analogy#0;class#Word2VEC#0" />
+                <element signature="docComment;method#getWordVector#0;class#Word2VEC#0" />
+                <element signature="docComment;method#getFloat#0;class#Word2VEC#0" />
+                <element signature="method#getFloat#0;class#Word2VEC#0" />
+                <element signature="docComment;method#readString#0;class#Word2VEC#0" />
+                <element signature="e#7040#7041#0" expanded="true" />
+                <element signature="e#7059#7060#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/PictureServiceImpl.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/ISearchService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="35" column="13" lean-forward="true" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+            <state relative-caret-position="247">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/IOrderService.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/SearchServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+            <state relative-caret-position="589">
+              <caret line="95" column="6" lean-forward="true" selection-start-line="95" selection-start-column="6" selection-end-line="95" selection-end-column="6" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#838#839#0" expanded="true" />
+                <element signature="e#863#864#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/DommodityDao.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/OrderServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="19" column="54" lean-forward="true" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
+            <state relative-caret-position="133">
+              <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -276,17 +306,64 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/DommodityServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="89" column="26" lean-forward="true" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
+            <state relative-caret-position="399">
+              <caret line="34" column="14" lean-forward="true" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/DommodityController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/Dommodity.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="173" column="52" lean-forward="true" selection-start-line="173" selection-start-column="52" selection-end-line="173" selection-end-column="52" />
+            <state relative-caret-position="152">
+              <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/WordEntry.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="443">
+              <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+              <folding>
+                <element signature="e#202#203#0" expanded="true" />
+                <element signature="e#229#230#0" expanded="true" />
+                <element signature="e#269#270#0" expanded="true" />
+                <element signature="e#301#302#0" expanded="true" />
+                <element signature="e#332#333#0" expanded="true" />
+                <element signature="e#360#361#0" expanded="true" />
+                <element signature="e#401#402#0" expanded="true" />
+                <element signature="e#435#436#0" expanded="true" />
+                <element signature="e#689#690#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/Subscribe.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
@@ -304,22 +381,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pictureFile</find>
-      <find>xiong</find>
-      <find>Session</find>
-      <find>LinkedNum</find>
-      <find>mail</find>
-      <find>sendgenerater</find>
-      <find>==</find>
-      <find>time</find>
-      <find>date</find>
-      <find>servlet</find>
-      <find>socket</find>
-      <find>Servlet.init(</find>
-      <find>org.springframework.web.servlet.mvc.method.annotation.RequestMapping</find>
-      <find>can not resolve symbol</find>
-      <find>xml</find>
-      <find>.xml</find>
       <find>ClassNotFoundException</find>
       <find>eureka</find>
       <find>context</find>
@@ -334,6 +395,22 @@
       <find>entry</find>
       <find>removeRersonalChatRecord</find>
       <find>0</find>
+      <find>logi</find>
+      <find>debug</find>
+      <find>59269</find>
+      <find>tempoararyid</find>
+      <find>chatrec</find>
+      <find>ch</find>
+      <find>websocket</find>
+      <find>idmsg</find>
+      <find>sameCharLimit</find>
+      <find>.score</find>
+      <find>UTF</find>
+      <find>loadModel</find>
+      <find>gbk</find>
+      <find>utf</find>
+      <find>item is</find>
+      <find>loadGoogleModel</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -342,57 +419,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/IOrderService.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pictest.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/dao/IPictureDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/dao/IUserDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/MailService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/Report.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/PictureDao.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/IPictureService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/MyWebSocketConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/IM/MyWebSocketConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/IM/MyHandShakeInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/IM/MyWebSocketHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/Message.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/UserDao.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/OrderController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/Order.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/OrderDao.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/OrderServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/IDommodityService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/dao/IDommodityDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/MyWebSocketHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/MyWebSocketConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/WebSocketPushHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/MyWebSocketInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/websockeeTest.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/websocketLogin.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/websockeeTest.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/SpringWebSocketHandlerInterceptor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/IMUser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/WebSocketConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/UserController.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/IUserService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/ISocialService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/SystemWebSocketHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/ChatRecord.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/DommodityController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/SocialServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/SocialDao.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/dao/ISocialDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/Subscribe.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/SocialController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/DommodityServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/DommodityDao.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/Dommodity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/PictureServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/PictureController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/jdbc.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/dao/WordEntry.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/Word2VEC.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/dao/IDommodityTypeDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/dao/IDommodityDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/dao/IOrderDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/dao/IPictureDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/dao/ISocialDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/dao/IUserDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/ChatRecord.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/Dommodity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/Message.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/DommodityTpye.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/Order.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/PaymentType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/Picture.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/Report.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/Status.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/Subscribe.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/Subscription.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/DommodityServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/ISearchService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/IDommodityService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/IOrderService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/IPictureService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/ISocialService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/IUserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/SpringWebSocketHandlerInterceptor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/SystemWebSocketHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/IM/WebSocketConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/OrderController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/SocialController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/IM/MyHandShakeInterceptor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/SocialServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/PictureServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/MailService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/OrderServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/PictureController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/ISearchService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/WordEntry.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/SearchServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/Word2VEC.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/DommodityController.java" />
       </list>
     </option>
   </component>
@@ -416,11 +493,11 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-433" />
-    <option name="y" value="130" />
-    <option name="width" value="3860" />
-    <option name="height" value="1100" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="667" />
+    <option name="y" value="22" />
+    <option name="width" value="974" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -485,8 +562,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -497,6 +574,11 @@
             <path>
               <item name="helloSSM" type="b2602c69:ProjectViewProjectNode" />
               <item name="helloSSM" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="helloSSM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="helloSSM" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -528,16 +610,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com.hello" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="helloSSM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="helloSSM" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com.hello" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="IM" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="helloSSM" type="b2602c69:ProjectViewProjectNode" />
@@ -614,6 +686,11 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="helloSSM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="helloSSM" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -628,34 +705,41 @@
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="hellossm" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545909345831" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557469918901" />
+    <property name="last_opened_file_path" value="G:/DesktopDir/course/Junior2/Project/word2vec_java_test" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15136719" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.hello.service" />
+      <recent name="com.hello.service.impl" />
+      <recent name="com.hello.model" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\text\helloSSM\src\main\java\com.hello\service" />
+      <recent name="F:\text\helloSSM\src\main\resources" />
+      <recent name="F:\text\helloSSM\src\main\resources\mapper" />
       <recent name="F:\text\helloSSM\src\main\java\com.hello\controller" />
       <recent name="F:\text\helloSSM\src\main\webapp" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.hello.model" />
       <recent name="com.hello.service.impl" />
-      <recent name="com.hello.dao" />
       <recent name="com.hello.service" />
+      <recent name="com.hello.dao" />
+      <recent name="com.hello.model" />
       <recent name="com.hello.controller" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\text\helloSSM\src\main\resources\mapper" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\text\helloSSM\src\main\java\com.hello\service" />
+      <recent name="F:\text\helloSSM\src\main\java\com.hello" />
       <recent name="F:\text\helloSSM\src\main\java\com.hello\controller" />
       <recent name="F:\text\helloSSM\src\main\webapp" />
-      <recent name="F:\text\helloSSM\src\main\webapp\WEB-INF" />
-      <recent name="F:\text\helloSSM\src\main\java\com.hello\service\impl" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -896,14 +980,39 @@
       <workItem from="1545878978549" duration="603000" />
       <workItem from="1545886523075" duration="16338000" />
       <workItem from="1545913255822" duration="182000" />
-      <workItem from="1545916375016" duration="3443000" />
+      <workItem from="1545916375016" duration="3549000" />
+      <workItem from="1545923543301" duration="1225000" />
+      <workItem from="1545962016658" duration="486000" />
+      <workItem from="1546439667611" duration="3165000" />
+      <workItem from="1546446611326" duration="1576000" />
+      <workItem from="1546449497493" duration="1737000" />
+      <workItem from="1546452057062" duration="638000" />
+      <workItem from="1546482337321" duration="697000" />
+      <workItem from="1546485040129" duration="3123000" />
+      <workItem from="1546679360354" duration="543000" />
+      <workItem from="1546842531030" duration="1219000" />
+      <workItem from="1550749712993" duration="776000" />
+      <workItem from="1551933611767" duration="223000" />
+      <workItem from="1552285039531" duration="653000" />
+      <workItem from="1552533968426" duration="5267000" />
+      <workItem from="1552889185600" duration="237000" />
+      <workItem from="1556348417860" duration="4842000" />
+      <workItem from="1556364899317" duration="48000" />
+      <workItem from="1556370092201" duration="4027000" />
+      <workItem from="1556383661625" duration="3750000" />
+      <workItem from="1556425304988" duration="6273000" />
+      <workItem from="1556504855339" duration="11000" />
+      <workItem from="1556523123129" duration="656000" />
+      <workItem from="1557024754761" duration="2982000" />
+      <workItem from="1557066262632" duration="201000" />
+      <workItem from="1557409651261" duration="19406000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="285589000" />
+    <option name="totallyTimeSpent" value="349456000" />
   </component>
-  <component name="TodoView">
+  <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
     </todo-panel>
@@ -913,32 +1022,34 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49924812" visible="true" weight="0.1881663" />
-      <window_info id="Structure" order="1" sideWeight="0.50075185" side_tool="true" weight="0.1881663" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49774435" visible="true" weight="0.16044776" />
+      <window_info id="Structure" order="1" sideWeight="0.5022556" side_tool="true" weight="0.19029851" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Web" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32899022" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4978678" visible="true" weight="0.27795875" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3978022" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32967034" />
-      <window_info anchor="bottom" id="Application Servers" order="7" weight="0.32857144" />
-      <window_info anchor="bottom" id="Spring" order="8" sideWeight="0.49946696" weight="0.32899022" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.32899022" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32464713" />
-      <window_info anchor="bottom" id="Java Enterprise" order="12" />
-      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="14" weight="0.32899022" />
+      <window_info anchor="bottom" id="CheckStyle" />
+      <window_info anchor="bottom" id="EvoSuite" order="0" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32899022" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.4978678" weight="0.3132154" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.3978022" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.32882413" />
+      <window_info anchor="bottom" id="Application Servers" order="8" weight="0.32857144" />
+      <window_info anchor="bottom" id="Spring" order="9" sideWeight="0.49946696" weight="0.32899022" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.21227887" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5021322" side_tool="true" weight="0.29207385" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32464713" />
+      <window_info anchor="bottom" id="Java Enterprise" order="13" />
+      <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="15" visible="true" weight="0.32882413" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -963,341 +1074,396 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/src/main" />
     </ignored-roots>
+    <MESSAGE value="add doc, add search recommand" />
+    <option name="LAST_COMMIT_MESSAGE" value="add doc, add search recommand" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/Word2VEC.java</url>
+          <line>128</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/IM/MyWebSocketInterceptor.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/Status.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
-          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-webmvc/4.3.5.RELEASE/spring-webmvc-4.3.5.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/Picture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="84" column="13" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
+        <state relative-caret-position="-541">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/META-INF/MANIFEST.MF">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/PaymentType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/OrderController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mybatis.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-web/4.3.5.RELEASE/spring-web-4.3.5.RELEASE.jar!/org/springframework/http/converter/support/AllEncompassingFormHttpMessageConverter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/IM/MyWebSocketHandler.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/IM/MyWebSocketConfig.java" />
-    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-websocket/4.0.5.RELEASE/spring-websocket-4.0.5.RELEASE.jar!/org/springframework/web/socket/sockjs/transport/session/AbstractSockJsSession.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="67" column="31" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/IM/IMUser.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/websocketLogin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/emailLink.jsp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/websocketTest.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/IUserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="26" column="52" lean-forward="true" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="100" selection-start-line="100" selection-end-line="100" selection-end-column="46" />
+        <state relative-caret-position="133">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/Order.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="43" column="31" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="31" />
+        <state relative-caret-position="-1909">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/UserServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/Message.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="162" column="13" lean-forward="true" selection-start-line="162" selection-start-column="13" selection-end-line="163" selection-end-column="56" />
+        <state relative-caret-position="-408">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/Subscription.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/DommodityTpye.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="53" column="5" lean-forward="true" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/OrderDao.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/UserDao.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/PictureDao.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="8" lean-forward="true" selection-start-line="21" selection-start-column="8" selection-end-line="23" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/IM/SpringWebSocketHandlerInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2546">
-          <caret line="134" column="49" lean-forward="true" selection-start-line="134" selection-start-column="49" selection-end-line="134" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="988">
-          <caret line="52" column="19" selection-start-line="52" selection-start-column="19" selection-end-line="52" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="39" lean-forward="true" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/IM/WebSocketConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/subscribe.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/IM/SystemWebSocketHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="59" column="21" lean-forward="true" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
+        <state relative-caret-position="133">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/ChatRecord.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="81" column="17" selection-start-line="81" selection-start-column="17" selection-end-line="81" selection-end-column="17" />
+        <state relative-caret-position="-465">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/DommodityController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/IM/WebSocketConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1850">
-          <caret line="124" column="43" lean-forward="true" selection-start-line="124" selection-start-column="43" selection-end-line="124" selection-end-column="43" />
+        <state relative-caret-position="190">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/IM/SystemWebSocketHandler.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/IUserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/IM/SpringWebSocketHandlerInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/SocialServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="43" column="34" selection-start-line="43" selection-start-column="34" selection-end-line="43" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/SocialDao.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/dao/IOrderDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/dao/IPictureDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/dao/IDommodityTypeDao.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/dao/IDommodityDao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/UserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" column="54" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="54" />
+        <state relative-caret-position="285">
+          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/ISocialService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/Subscription.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="133">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/Subscribe.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
-          <folding>
-            <element signature="e#428#429#0" expanded="true" />
-            <element signature="e#453#454#0" expanded="true" />
-            <element signature="e#487#488#0" expanded="true" />
-            <element signature="e#515#516#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="608">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/SocialController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/dommoditydisable.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/dommoditycreate.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="80" column="9" lean-forward="true" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="171">
+          <caret line="9" column="59" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="59" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/IPictureService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/MailService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        <state relative-caret-position="152">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/DommodityTypeDao.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/UserDao.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+        <state relative-caret-position="171">
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/IOrderService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/dao/IUserDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/IDommodityService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/DommodityServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="89" column="26" lean-forward="true" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
+        <state relative-caret-position="171">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/DommodityDao.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="54" lean-forward="true" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
+        <state relative-caret-position="589">
+          <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/PictureDao.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" selection-start-line="12" selection-end-line="14" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/picdltest.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pictest.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="9" lean-forward="true" selection-start-line="16" selection-start-column="48" selection-end-line="17" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/dao/IOrderDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/Dommodity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="173" column="52" lean-forward="true" selection-start-line="173" selection-start-column="52" selection-end-line="173" selection-end-column="52" />
+        <state relative-caret-position="19">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/dao/ISocialDao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/Report.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="19">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/PictureServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/IPictureService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="35" column="13" lean-forward="true" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+        <state relative-caret-position="152">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/PictureController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="28" column="72" selection-start-line="28" selection-start-column="72" selection-end-line="28" selection-end-column="72" />
+        <state relative-caret-position="266">
+          <caret line="41" column="67" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/dao/IDommodityDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/dao/IPictureDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/dao/ISocialDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mybatis.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="28" selection-start-column="28" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12" column="41" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="47" column="52" selection-start-line="47" selection-start-column="49" selection-end-line="47" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="37" column="22" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/OrderController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/PictureServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="34" column="37" lean-forward="true" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="41" column="9" lean-forward="true" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/SocialController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/dao/IDommodityTypeDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="6" selection-start-line="6" selection-end-line="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="27" lean-forward="true" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+        <state relative-caret-position="152">
+          <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/OrderServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/DommodityServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="34" column="14" lean-forward="true" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/Subscribe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/WordEntry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+          <folding>
+            <element signature="e#202#203#0" expanded="true" />
+            <element signature="e#229#230#0" expanded="true" />
+            <element signature="e#269#270#0" expanded="true" />
+            <element signature="e#301#302#0" expanded="true" />
+            <element signature="e#332#333#0" expanded="true" />
+            <element signature="e#360#361#0" expanded="true" />
+            <element signature="e#401#402#0" expanded="true" />
+            <element signature="e#435#436#0" expanded="true" />
+            <element signature="e#689#690#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/SearchServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="95" column="6" lean-forward="true" selection-start-line="95" selection-start-column="6" selection-end-line="95" selection-end-column="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#838#839#0" expanded="true" />
+            <element signature="e#863#864#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/Word2VEC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="37" column="48" selection-start-line="37" selection-start-column="48" selection-end-line="37" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#417#418#0" expanded="true" />
+            <element signature="e#438#439#0" expanded="true" />
+            <element signature="method#loadGoogleModel#0;class#Word2VEC#0" />
+            <element signature="method#loadJavaModel#0;class#Word2VEC#0" />
+            <element signature="method#analogy#0;class#Word2VEC#0" />
+            <element signature="docComment;method#getWordVector#0;class#Word2VEC#0" />
+            <element signature="docComment;method#getFloat#0;class#Word2VEC#0" />
+            <element signature="method#getFloat#0;class#Word2VEC#0" />
+            <element signature="docComment;method#readString#0;class#Word2VEC#0" />
+            <element signature="e#7040#7041#0" expanded="true" />
+            <element signature="e#7059#7060#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/ISearchService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/DommodityController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
         </state>
       </provider>
     </entry>
@@ -1360,6 +1526,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

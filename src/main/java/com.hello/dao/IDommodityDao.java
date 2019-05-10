@@ -7,11 +7,12 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.PutMapping;
 
 /**
- * project helloSSM
- * authod wuyanhui
- * datetime 2017/11/23 16:17
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
  * desc
  */
+
+
 public interface IDommodityDao {
     Dommodity selectDommodity(long id);
     void insertDommodity(Dommodity dommodity);

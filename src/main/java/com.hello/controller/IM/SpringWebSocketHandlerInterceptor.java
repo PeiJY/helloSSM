@@ -9,6 +9,11 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
+/**
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
+ * desc
+ */
 
 @Component
 public class SpringWebSocketHandlerInterceptor extends HttpSessionHandshakeInterceptor {

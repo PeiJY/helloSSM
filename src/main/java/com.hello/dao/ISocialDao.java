@@ -6,11 +6,11 @@ import com.hello.model.User;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * project helloSSM
- * authod wuyanhui
- * datetime 2017/11/23 16:17
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
  * desc
  */
+
 public interface ISocialDao {
   public ChatRecord[] getPersonalChatRecord(String recvnam);
   public void removePersonalChatRecord(String recvname);

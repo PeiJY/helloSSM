@@ -3,6 +3,11 @@ package com.hello.service;
 import com.hello.model.ChatRecord;
 import com.hello.model.Subscribe;
 import com.hello.model.User;
+/**
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
+ * desc
+ */
 
 public interface ISocialService {
 

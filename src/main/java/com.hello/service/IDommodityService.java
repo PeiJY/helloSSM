@@ -4,6 +4,12 @@ import com.hello.model.DommodityTpye;
 import com.hello.model.Status;
 import com.hello.model.Dommodity;
 
+/**
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
+ * desc
+ */
+
 public interface IDommodityService {
 
 

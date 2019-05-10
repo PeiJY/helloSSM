@@ -4,6 +4,11 @@ import com.hello.model.Picture;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+/**
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
+ * desc
+ */
 
 public interface IPictureService {
 

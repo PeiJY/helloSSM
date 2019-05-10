@@ -12,6 +12,11 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
+ *
+ *  authod Pei Jiyuan
+ *  datetime 2019/4/27
+ *  desc
+ *
  * websocket握手拦截器
  * 拦截握手前，握手后的两个切面
  */

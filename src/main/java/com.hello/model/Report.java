@@ -4,11 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * project helloSSM
- * authod wuyanhui
- * datetime 2017/11/23 16:17
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
  * desc
  */
+
 
 public class Report {
     private long reportid;

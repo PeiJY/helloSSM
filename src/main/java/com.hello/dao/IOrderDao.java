@@ -4,11 +4,11 @@ import com.hello.model.Order;
 
 
 /**
- * project helloSSM
- * authod wuyanhui
- * datetime 2017/11/23 16:17
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
  * desc
  */
+
 public interface IOrderDao {
     Order selectOrder(long orderid);
     void insertOrder(Order order);

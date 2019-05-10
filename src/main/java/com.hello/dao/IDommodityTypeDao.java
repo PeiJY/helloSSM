@@ -5,11 +5,11 @@ import com.hello.model.Subscription;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * project helloSSM
- * authod wuyanhui
- * datetime 2017/11/23 16:17
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
  * desc
  */
+
 public interface IDommodityTypeDao {
     void insertType(@Param("dommodityid")long dommodityid, @Param("type")String type);
     void deleteAllType(long dommodityid);

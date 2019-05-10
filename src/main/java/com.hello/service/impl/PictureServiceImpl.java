@@ -13,6 +13,11 @@ import java.io.File;
 import java.io.IOException;
 
 
+/**
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
+ * desc
+ */
 
 @Service
 public class PictureServiceImpl implements IPictureService {
@@ -33,7 +38,7 @@ public class PictureServiceImpl implements IPictureService {
    //private String sls = "\\";
 
 /*
-    @Override
+    @Override// 生成缩略图
     public File generateLowD(File picture) {
     }
 */
@@ -72,11 +77,6 @@ public class PictureServiceImpl implements IPictureService {
         return pic;
     }
 
-/*
-    @Override
-    public int modifyPic(File pitture, long picid) {
-    }
-*/
 
     @Override
     public Picture findPicByName(String filename){

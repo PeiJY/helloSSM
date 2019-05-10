@@ -2,6 +2,13 @@ package com.hello.model;
 
 import java.util.Date;
 
+/**
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
+ * desc
+ */
+
+
 public class Dommodity {
     private long id;
     private String name;

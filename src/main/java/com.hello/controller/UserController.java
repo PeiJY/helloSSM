@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 
+/**
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
+ * desc
+ */
 
 @Controller
 @RequestMapping("/user")

@@ -7,13 +7,14 @@ import com.hello.model.Dommodity;
 import com.hello.model.Order;
 import com.hello.model.User;
 import com.hello.service.IOrderService;
-import com.hello.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Random;
-
-//import com.hello.dao.impl.UserDaoImpl;
+/**
+ * authod Pei Jiyuan
+ * datetime 2019/4/27
+ * desc
+ */
 
 @Service
 public class OrderServiceImpl implements IOrderService {
