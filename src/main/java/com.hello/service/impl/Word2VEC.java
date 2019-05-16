@@ -1,6 +1,7 @@
 package com.hello.service.impl;
 
 import com.hello.model.WordEntry;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.*;
@@ -11,6 +12,7 @@ import java.util.Map.Entry;
  *
  *  date 2019/4/27
  */
+
 public class Word2VEC {
 
 	private HashMap<String, float[]> wordMap = new HashMap<String, float[]>();
@@ -75,7 +77,7 @@ public class Word2VEC {
 	}
 
 	/**
-	 * 加载模型
+	 * 加载模型,binary
 	 * 
 	 * @param path
 	 *            模型的路径
@@ -160,7 +162,9 @@ public class Word2VEC {
 	private static final int MAX_SIZE = 50;
 
 	/**
-	 * 近义词
+	 * analogy relation of word2 and word3 and find the corresponding word for word1.
+	 *
+	 * exmple : queen - women + man = king
 	 * 
 	 * @return
 	 */
@@ -208,8 +212,6 @@ public class Word2VEC {
 				minOffe = i;
 			}
 		}
-
-
 		if (score > min) {
 			wordsEntrys.set(minOffe, new WordEntry(name, score));
 		}
@@ -247,6 +249,8 @@ public class Word2VEC {
 		return result;
 	}
 
+
+	/** using the average word vector of a set of words as query vector */
 	public Set<WordEntry> distance(List<String> words) {
 
 		float[] center = null;
@@ -278,8 +282,17 @@ public class Word2VEC {
 			}
 		}
 		result.pollFirst();
-
 		return result;
+	}
+
+	public float compare2(String word1, String word2){
+		float[] wv1 = wordMap.get(word1);
+		float[] wv2 = wordMap.get(word2);
+		float dist = 0;
+		for (int i = 0; i < wv1.length; i++) {
+			dist += wv2[i] * wv1[i];
+		}
+		return dist;
 	}
 
 	private float[] sum(float[] center, float[] fs) {

@@ -15,16 +15,18 @@ public interface ISearchService {
 
     public void loadModel(String path);
 
-    public String correct (String queryWord ,double scoreLimit,int sameCharLimit );
+    public Set<WordEntry> calculDisSet(String queryWord, int top);
+
+    public String correct (Set<WordEntry> calculResultSet,String queryWord ,double scoreLimit,int editDistanceLimit );
 
 
-    public Set<WordEntry> findTopClose(String queryWord, int top, double scoreLimit);
+    public Set<WordEntry> findTopClose(Set<WordEntry> calculResultSet,String queryWord, int num,double scoreLimit);
 
 
-    public Set<WordEntry> findTopCloseWithSameCharLimit(String queryWord, int top, int sameCharLimit, double scoreLimit);
+    public Set<WordEntry> findTopCloseWithSameCharLimit(Set<WordEntry> calculResultSet,String queryWord,int num,  int editDistanceLimit, double scoreLimit);
 
 
-    public String autoComplete(String queryWord, double scoreLimit);
+    public String autoComplete(Set<WordEntry> calculResultSet,String queryWord, double scoreLimit,int editDistanceLimit);
 
     public int getMapSize();
 }

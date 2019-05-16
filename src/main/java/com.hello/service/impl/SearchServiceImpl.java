@@ -2,6 +2,7 @@ package com.hello.service.impl;
 
 import com.hello.model.WordEntry;
 import com.hello.service.ISearchService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -20,9 +21,10 @@ public class SearchServiceImpl implements ISearchService {
 
     //private String modelPath = "G:\\DesktopDir\\course\\Junior2\\Project\\word2vec_java_test\\src\\vectors.bin";
     //private String modelPath = "F:\\text\\helloSSM\\src\\main\\java\\com.hello\\service\\vectors.bin";
-    private String modelPath = "C:\\Users\\Jiyuan Pei\\Desktop\\vector";
+    private String modelPath = "G:\\DesktopDir\\Projects\\SUSTechFM\\vector";
+
     //private String modelPath ="/var/lib/tomcat8/vectors.bin";
-    private Word2VEC w2v = new Word2VEC(modelPath);
+    private Word2VEC w2v= new Word2VEC(modelPath);
 
 
     @Override
@@ -44,6 +46,24 @@ public class SearchServiceImpl implements ISearchService {
         }
     }
 
+    @Override
+    public Set<WordEntry> calculDisSet(String queryWord, int top){
+
+        /** topNsize limit the size of result set */
+        int topNsize = w2v.getTopNSize();
+        w2v.setTopNSize(top);
+
+        /** calculate the result set by word2vec */
+        Set<WordEntry> calculResultSet = w2v.distance(queryWord);
+        //System.out.printf("result size is %d\n",calculResultSet.size());
+
+        /** recover to the origin topNsize */
+        w2v.setTopNSize(topNsize);
+        return calculResultSet;
+
+    }
+
+
     /**
      * auto correct the query keyword, the corrected result is the lowest dist word.
      *
@@ -51,12 +71,15 @@ public class SearchServiceImpl implements ISearchService {
      * @return the correcting result. If there is no suitable result, return "".
      */
     @Override
-    public String correct (String queryWord ,double scoreLimit,int sameCharLimit ){// 暂时不考虑字符匹配和出现频率
+    public String correct (Set<WordEntry> calculResultSet ,String queryWord ,double scoreLimit,int editDistanceLimit ){// 暂时不考虑字符匹配和出现频率
         //System.out.println(w2v.getWordMap().toString());
-        Set<WordEntry> resultSet = find(queryWord,scoreLimit,2,sameCharLimit);
+        Set<WordEntry> resultSet = find(calculResultSet,queryWord,scoreLimit,2,editDistanceLimit);
         Iterator<WordEntry> it = resultSet.iterator();
-        if(it.hasNext())
-            return it.next().getName();
+        if(it.hasNext()) {
+            WordEntry a = it.next();
+            System.out.println(a.getScore());
+            return a.getName();
+        }
         return "";
     }
 
@@ -64,30 +87,28 @@ public class SearchServiceImpl implements ISearchService {
      * find out the top N closest word of the keyword, which all score bigger than socreLimit
      *
      * @param queryWord the keyword of query
-     * @param top 'N' the limit of number of result
      * @param scoreLimit the lowest score
      * @return a set of WordEntry, which is each result word and its score
      */
     @Override
-    public Set<WordEntry> findTopClose(String queryWord, int top, double scoreLimit){
-        Set<WordEntry> resultSet = find(queryWord,scoreLimit,2,0);
+    public Set<WordEntry> findTopClose(Set<WordEntry> calculResultSet ,String queryWord,int num, double scoreLimit){
+        Set<WordEntry> resultSet = find(calculResultSet,queryWord,scoreLimit,num,999);
         return resultSet;
     }
 
     /**
      * find out the top N closest word of the keyword,
      * which all score bigger than socreLimit and
-     * edit distance smaller than sameCharLimit
+     * edit distance smaller than editDistanceLimit
      *
      * @param queryWord the keyword of query
-     * @param top 'N' the limit of number of result
-     * @param sameCharLimit maximum edit distance
+     * @param editDistanceLimit maximum edit distance
      * @param scoreLimit the lowest score
      * @return a set of WordEntry, which is each result word and its score
      */
     @Override
-    public Set<WordEntry> findTopCloseWithSameCharLimit(String queryWord, int top, int sameCharLimit , double scoreLimit){
-        Set<WordEntry> resultSet = find(queryWord,scoreLimit,top,sameCharLimit);
+    public Set<WordEntry> findTopCloseWithSameCharLimit(Set<WordEntry> calculResultSet  ,String queryWord, int num,int editDistanceLimit , double scoreLimit){
+        Set<WordEntry> resultSet = find(calculResultSet,queryWord,scoreLimit,num,editDistanceLimit);
         return resultSet;
     }
 
@@ -99,10 +120,10 @@ public class SearchServiceImpl implements ISearchService {
      * @return a set of WordEntry, which is each result word and its score
      */
     @Override
-    public String autoComplete(String queryWord,double scoreLimit){
+    public String autoComplete( Set<WordEntry> calculResultSet,String queryWord,double scoreLimit,int editDistanceLimit){
         // TODO dictionary tree for string match
 
-        Set<WordEntry> resultSet = find(queryWord,scoreLimit,2,queryWord.length());
+        Set<WordEntry> resultSet = find(calculResultSet,queryWord,scoreLimit,2,editDistanceLimit);
         Iterator<WordEntry> it = resultSet.iterator();
         String result = "";
         if(it.hasNext())
@@ -116,78 +137,76 @@ public class SearchServiceImpl implements ISearchService {
      *
      * @param queryWord the keyword of query
      * @param top 'N' the limit of number of result
-     * @param sameCharLimit maximum edit distance
-     * @param scoreLimit the lowest score
+     * @param editDistanceLimit maximum edit distance
+     * @param scoreLimit the lowest score(low socre means high vector distance)
      * @return a set of WordEntry, which is each result word and its score
      */
-    private Set<WordEntry> find (String queryWord,double scoreLimit, int top, int sameCharLimit) {
+    private Set<WordEntry> find (Set<WordEntry> calculResultSet , String queryWord,double scoreLimit, int top, int editDistanceLimit) {
+
         System.out.printf("queryWord is %s\n",queryWord);
+        int count = 0;
+        /** filtration according scoreLimit, editDistanceLimit */
         Set<WordEntry> resultSet = new HashSet<>();
-        int topNsize = w2v.getTopNSize();
-        w2v.setTopNSize(top);
-        Set<WordEntry> calculResultSet = w2v.distance(queryWord);
-        System.out.printf("result size is %d\n",calculResultSet.size());
         Iterator<WordEntry> it = calculResultSet.iterator();
-        w2v.setTopNSize(topNsize);
-        while(it.hasNext()){
+
+        while(it.hasNext() && count < top){
             WordEntry entry = it.next();
             //System.out.printf("item is %s\n",entry.getName());
             if(entry.getScore()<scoreLimit)
-                break;
-            if(sameCharCounter(queryWord,entry.getName())<sameCharLimit)
-                break;
+                continue;
+            if(calculEditDis(queryWord,entry.getName())>editDistanceLimit)
+                continue;
             resultSet.add(entry);
             System.out.printf("result add %s\n",entry.getName());
+            count += 1;
         }
         return resultSet;
     }
 
 
     /**
-     * calcul the similrity of 2 words
+     * find the min edit distance of 2 strings.
      *
-     * @param str1 word1
-     * @param str2 word2
-     * @return length of word1 minus the edit distance of these two words
+     *     作者：qq_42151769
+     *     来源：CSDN
+     *     原文：https://blog.csdn.net/qq_42151769/article/details/84134308
+     *
+     * @param word1 string1
+     * @param word2 string2
+     * @return the last element of the metrix, which is the min edic distance
      */
-    private int sameCharCounter(String str1,String str2) {
-        //计算两个字符串的长度。
-        int len1 = str1.length();
-        int len2 = str2.length();
-        //建立上面说的数组，比字符长度大一个空间
-        int[][] dif = new int[len1 + 1][len2 + 1];
-        //赋初值，步骤B。
-        for (int a = 0; a <= len1; a++) {
-            dif[a][0] = a;
+    public int calculEditDis(String word1, String word2) {
+
+        if (word1.length() == 0 || word2.length() == 0) {
+            return word1.length() == 0 ? word2.length() : word1.length();
         }
-        for (int a = 0; a <= len2; a++) {
-            dif[0][a] = a;
+        //初始化矩阵
+        int[][] arr = new int[word1.length() + 1][word2.length() + 1];
+        for (int i = 0; i <= word1.length(); i++) {
+            arr[i][0] = i;
         }
-        //计算两个字符是否一样，计算左上的值
-        int temp;
-        for (int i = 1; i <= len1; i++) {
-            for (int j = 1; j <= len2; j++) {
-                if (str1.charAt(i - 1) == str2.charAt(j - 1)) {
-                    temp = 0;
+        for (int j = 0; j <= word2.length(); j++) {
+            arr[0][j] = j;
+        }
+
+        for (int i = 1; i <= word1.length(); i++) {
+            for (int j = 1; j <= word2.length(); j++) {
+                if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
+                    //相等时temp为0
+                    arr[i][j] = arr[i - 1][j - 1];
                 } else {
-                    temp = 1;
+                    //不相等时,temp为1
+                    int replace = arr[i - 1][j - 1] + 1;
+                    int insert = arr[i - 1][j] + 1;
+                    int delete = arr[i][j - 1] + 1;
+                    int min = Math.min(replace, insert);
+                    min = Math.min(min, delete);
+                    arr[i][j] = min;
                 }
-                //取三个值中最小的
-                dif[i][j] = min(dif[i - 1][j - 1] + temp, dif[i][j - 1] + 1,
-                        dif[i - 1][j] + 1);
             }
         }
-        return min(str1.length()-dif[len1][len2],str2.length()-dif[len1][len2]);
+        System.out.printf("edit dis  %s %s %d\n",word1,word2,arr[word1.length()][word2.length()]);
+        return arr[word1.length()][word2.length()];
     }
 
-    //得到最小值
-    private static int min(int... is) {
-        int min = Integer.MAX_VALUE;
-        for (int i : is) {
-            if (min > i) {
-                min = i;
-            }
-        }
-        return min;
-    }
 }

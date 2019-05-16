@@ -5,8 +5,6 @@ import com.hello.model.*;
 import com.hello.service.IDommodityService;
 import com.hello.service.ISearchService;
 import com.hello.service.IUserService;
-import com.hello.service.impl.SearchServiceImpl;
-import com.hello.service.impl.Word2VEC;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
-import javax.json.JsonObject;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
@@ -39,7 +36,7 @@ public class DommodityController {
     private ISearchService searchService ;
 
     static int resultNum = 10;
-    static double mimScore = 0.1;
+    static double minScore = 0.1;
 
     // TODO add load mode interface for administer
 
@@ -173,15 +170,15 @@ public class DommodityController {
     @ResponseBody
     public Object searchRecom(@RequestParam String queryWord){
         JSONObject jsonObject = new JSONObject();
-        String complete = searchService.autoComplete(queryWord,mimScore);
-        String correct = searchService.correct(queryWord,mimScore,queryWord.length()-1);
+        Set<WordEntry> calculResultSet = searchService.calculDisSet(queryWord,resultNum);
         String similar = "{";
         String relative = "{";
         String dou = "";
 
-
-        Set<WordEntry> similaySet = searchService.findTopCloseWithSameCharLimit(queryWord,resultNum,max(queryWord.length()-3,0),mimScore);
-        Set<WordEntry> relativeSet =searchService.findTopClose(queryWord,resultNum,mimScore);
+        String complete = searchService.autoComplete(calculResultSet,queryWord, minScore,1);
+        String correct = searchService.correct(calculResultSet, queryWord, 0.4,1);
+        Set<WordEntry> similaySet = searchService.findTopCloseWithSameCharLimit(calculResultSet, queryWord,5,queryWord.length()/2, minScore);
+        Set<WordEntry> relativeSet =searchService.findTopClose(calculResultSet, queryWord,5, minScore);
 
         Iterator<WordEntry> simIt = similaySet.iterator();
         Iterator<WordEntry> relaIt = relativeSet.iterator();
@@ -193,7 +190,7 @@ public class DommodityController {
         similar = similar+"}";
         dou = "";
         while(relaIt.hasNext()){
-            relative = dou + relative + relaIt.next().getName();
+            relative = relative +  dou + relaIt.next().getName();
             dou = ",";
         }
         relative = relative + "}";
@@ -202,7 +199,7 @@ public class DommodityController {
         jsonObject.put("complete",complete);
         jsonObject.put("similar",similar);
         jsonObject.put("relative",relative);
-        jsonObject.put("mapsize",String.valueOf(searchService.getMapSize()));
+        //jsonObject.put("mapsize",String.valueOf(searchService.getMapSize()));
         return jsonObject;
     }
 
