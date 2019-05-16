@@ -8,15 +8,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="875324f7-2178-4f40-99c6-5be68ff1934f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com.hello/model/Trie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/controller/DommodityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/controller/DommodityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/service/ISearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/ISearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/model/Trie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/model/Trie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/SearchServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/SearchServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/Word2VEC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com.hello/service/impl/Word2VEC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hello/controller/DommodityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hello/controller/DommodityController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/helloSSM.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/DommodityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/helloSSM/WEB-INF/classes/com/hello/controller/DommodityController.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,7 +72,7 @@
           <entry key="MF" value="1" />
           <entry key="class" value="6" />
           <entry key="html" value="8" />
-          <entry key="java" value="657" />
+          <entry key="java" value="662" />
           <entry key="jsp" value="65" />
           <entry key="md" value="1" />
           <entry key="properties" value="23" />
@@ -87,7 +84,7 @@
         <counts>
           <entry key="CLASS" value="6" />
           <entry key="HTML" value="8" />
-          <entry key="JAVA" value="659" />
+          <entry key="JAVA" value="664" />
           <entry key="JSP" value="65" />
           <entry key="Manifest" value="1" />
           <entry key="Markdown" value="1" />
@@ -100,19 +97,19 @@
         <counts>
           <entry key="dummy" value="1" />
           <entry key="html" value="46" />
-          <entry key="java" value="30011" />
+          <entry key="java" value="31790" />
           <entry key="jsp" value="927" />
           <entry key="properties" value="72" />
-          <entry key="txt" value="29" />
+          <entry key="txt" value="80" />
           <entry key="xml" value="1877" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="46" />
-          <entry key="JAVA" value="30011" />
+          <entry key="JAVA" value="31790" />
           <entry key="JSP" value="926" />
-          <entry key="PLAIN_TEXT" value="30" />
+          <entry key="PLAIN_TEXT" value="81" />
           <entry key="Properties" value="72" />
           <entry key="RegExp" value="1" />
           <entry key="SQL" value="6" />
@@ -166,40 +163,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/dao/IDommodityDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/SearchServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-59">
-              <caret line="163" column="5" lean-forward="true" selection-start-line="163" selection-start-column="5" selection-end-line="163" selection-end-column="5" />
+            <state relative-caret-position="606">
+              <caret line="150" column="40" lean-forward="true" selection-start-line="150" selection-start-column="40" selection-end-line="150" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/IPictureService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/ISearchService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="28" column="119" selection-start-line="28" selection-start-column="119" selection-end-line="28" selection-end-column="119" />
             </state>
           </provider>
         </entry>
@@ -207,75 +177,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/Word2VEC.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="38" column="28" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="28" />
+            <state relative-caret-position="1425">
+              <caret line="297" column="41" lean-forward="true" selection-start-line="297" selection-start-column="41" selection-end-line="297" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#loadGoogleModel#0;class#Word2VEC#0" />
                 <element signature="method#loadJavaModel#0;class#Word2VEC#0" />
-                <element signature="e#7075#7076#0" expanded="true" />
-                <element signature="e#7106#7107#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/DommodityController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/Trie.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="182" column="58" selection-start-line="182" selection-start-column="8" selection-end-line="182" selection-end-column="58" />
+            <state relative-caret-position="777">
+              <caret line="91" column="5" lean-forward="true" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
+              <folding>
+                <element signature="e#4343#4344#0" expanded="true" />
+                <element signature="e#4375#4376#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/Trie.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/DommodityController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-114">
-              <caret line="104" column="29" selection-start-line="104" selection-start-column="22" selection-end-line="104" selection-end-column="29" />
-              <folding>
-                <element signature="e#4023#4024#0" expanded="true" />
-                <element signature="e#4055#4056#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/Subscription.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/PictureServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="47" column="60" selection-start-line="47" selection-start-column="60" selection-end-line="47" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/WordEntry.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="559">
-              <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
-              <folding>
-                <element signature="e#202#203#0" expanded="true" />
-                <element signature="e#229#230#0" expanded="true" />
-                <element signature="e#269#270#0" expanded="true" />
-                <element signature="e#301#302#0" expanded="true" />
-                <element signature="e#332#333#0" expanded="true" />
-                <element signature="e#360#361#0" expanded="true" />
-                <element signature="e#401#402#0" expanded="true" />
-                <element signature="e#435#436#0" expanded="true" />
-                <element signature="e#689#690#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="433">
+              <caret line="180" column="36" lean-forward="true" selection-start-line="180" selection-start-column="36" selection-end-line="180" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -293,12 +223,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>User</find>
-      <find>afterConnectionEstablished</find>
-      <find>username</find>
-      <find>payload</find>
-      <find>WebSocketMessage</find>
-      <find>userid</find>
       <find>entry</find>
       <find>removeRersonalChatRecord</find>
       <find>0</find>
@@ -316,13 +240,19 @@
       <find>utf</find>
       <find>item is</find>
       <find>loadGoogleModel</find>
-      <find>loadTxtModel</find>
       <find>findTopClose +</find>
       <find>findTopCloseWithSameCharLimit</find>
       <find>findTopClose</find>
-      <find>sameCharLimit</find>
-      <find>loadModel</find>
+      <find>SIZE</find>
       <find>autoComplete</find>
+      <find>system.out</find>
+      <find>sameCharLimit</find>
+      <find>printAll</find>
+      <find>loadModel</find>
+      <find>loadTxtModel</find>
+      <find>findWordsByPrefix</find>
+      <find>time co</find>
+      <find>search trie tree</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -377,11 +307,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/PictureController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com.hello/model/WordEntry.java" />
         <option value="$PROJECT_DIR$/src/main/java/com.hello/model/DommodityTpye.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/Word2VEC.java" />
         <option value="$PROJECT_DIR$/src/main/java/com.hello/service/ISearchService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/Word2VEC.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/Trie.java" />
         <option value="$PROJECT_DIR$/src/main/java/com.hello/service/impl/SearchServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com.hello/controller/DommodityController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com.hello/model/Trie.java" />
       </list>
     </option>
   </component>
@@ -627,7 +557,7 @@
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="hellossm" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557987458792" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558009496785" />
     <property name="last_opened_file_path" value="G:/DesktopDir/course/Junior2/Project/word2vec_java_test" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -638,28 +568,28 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\text\helloSSM\src\main\java\com.hello\service" />
-      <recent name="F:\text\helloSSM\src\main\java\com.hello" />
-      <recent name="F:\text\helloSSM\src\main\java\com.hello\controller" />
-      <recent name="F:\text\helloSSM\src\main\webapp" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.hello.service" />
       <recent name="com.hello.service.impl" />
       <recent name="com.hello.model" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.hello.service.impl" />
-      <recent name="com.hello.service" />
-      <recent name="com.hello.dao" />
-      <recent name="com.hello.model" />
-      <recent name="com.hello.controller" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\text\helloSSM\src\main\java\com.hello\service" />
       <recent name="F:\text\helloSSM\src\main\resources" />
       <recent name="F:\text\helloSSM\src\main\resources\mapper" />
+      <recent name="F:\text\helloSSM\src\main\java\com.hello\controller" />
+      <recent name="F:\text\helloSSM\src\main\webapp" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.hello.model" />
+      <recent name="com.hello.service.impl" />
+      <recent name="com.hello.service" />
+      <recent name="com.hello.dao" />
+      <recent name="com.hello.controller" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\text\helloSSM\src\main\java\com.hello\service" />
+      <recent name="F:\text\helloSSM\src\main\java\com.hello" />
       <recent name="F:\text\helloSSM\src\main\java\com.hello\controller" />
       <recent name="F:\text\helloSSM\src\main\webapp" />
     </key>
@@ -932,7 +862,7 @@
       <workItem from="1557562502467" duration="569000" />
       <workItem from="1557563396219" duration="808000" />
       <workItem from="1557564897521" duration="26000" />
-      <workItem from="1557976221252" duration="10053000" />
+      <workItem from="1557976221252" duration="23242000" />
     </task>
     <task id="LOCAL-00001" summary="add doc, add search recommand">
       <created>1557469946796</created>
@@ -941,13 +871,20 @@
       <option name="project" value="LOCAL" />
       <updated>1557469946796</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="改进搜索，四种功能使用一次distance，加入字典树，但未使用">
+      <created>1557987809831</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1557987809831</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="365620000" />
+    <option name="totallyTimeSpent" value="378809000" />
   </component>
-  <component name="TodoView" selected-index="4">
+  <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
     </todo-panel>
@@ -960,8 +897,8 @@
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49774435" visible="true" weight="0.16684435" />
-      <window_info id="Structure" order="1" sideWeight="0.5022556" side_tool="true" weight="0.19029851" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.496136" visible="true" weight="0.16684435" />
+      <window_info id="Structure" order="1" sideWeight="0.503864" side_tool="true" weight="0.16684435" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -971,17 +908,17 @@
       <window_info anchor="bottom" id="EvoSuite" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32882413" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.4978678" visible="true" weight="0.32674298" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.3978022" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.4978678" visible="true" weight="0.32674298" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.3975026" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32882413" />
-      <window_info anchor="bottom" id="Application Servers" order="8" weight="0.32857144" />
+      <window_info anchor="bottom" id="Application Servers" order="8" weight="0.32778355" />
       <window_info anchor="bottom" id="Spring" order="9" sideWeight="0.49946696" weight="0.32899022" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.21227887" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5021322" side_tool="true" weight="0.29207385" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.3236212" />
-      <window_info anchor="bottom" id="Java Enterprise" order="13" />
+      <window_info anchor="bottom" id="Java Enterprise" order="13" weight="0.3298647" />
       <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="15" weight="0.32882413" />
       <window_info anchor="bottom" id="CheckStyle" order="16" />
@@ -1010,14 +947,15 @@
       <path value="$PROJECT_DIR$/src/main" />
     </ignored-roots>
     <MESSAGE value="add doc, add search recommand" />
-    <option name="LAST_COMMIT_MESSAGE" value="add doc, add search recommand" />
+    <MESSAGE value="改进搜索，四种功能使用一次distance，加入字典树，但未使用" />
+    <option name="LAST_COMMIT_MESSAGE" value="改进搜索，四种功能使用一次distance，加入字典树，但未使用" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/Word2VEC.java</url>
-          <line>130</line>
+          <line>136</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
@@ -1072,20 +1010,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/SocialServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -1320,27 +1244,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/Word2VEC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="38" column="28" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#loadGoogleModel#0;class#Word2VEC#0" />
-            <element signature="method#loadJavaModel#0;class#Word2VEC#0" />
-            <element signature="e#7075#7076#0" expanded="true" />
-            <element signature="e#7106#7107#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/dao/IDommodityDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/IPictureService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -1355,6 +1258,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/SocialServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/ISearchService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="376">
@@ -1362,20 +1272,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/DommodityController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/UserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="182" column="58" selection-start-line="182" selection-start-column="8" selection-end-line="182" selection-end-column="58" />
+        <state relative-caret-position="285">
+          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/SearchServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/dao/IDommodityDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-59">
-          <caret line="163" column="5" lean-forward="true" selection-start-line="163" selection-start-column="5" selection-end-line="163" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="209">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -1388,12 +1295,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/model/Trie.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-114">
-          <caret line="104" column="29" selection-start-line="104" selection-start-column="22" selection-end-line="104" selection-end-column="29" />
+        <state relative-caret-position="777">
+          <caret line="91" column="5" lean-forward="true" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
           <folding>
-            <element signature="e#4023#4024#0" expanded="true" />
-            <element signature="e#4055#4056#0" expanded="true" />
+            <element signature="e#4343#4344#0" expanded="true" />
+            <element signature="e#4375#4376#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/Word2VEC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1425">
+          <caret line="297" column="41" lean-forward="true" selection-start-line="297" selection-start-column="41" selection-end-line="297" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#loadGoogleModel#0;class#Word2VEC#0" />
+            <element signature="method#loadJavaModel#0;class#Word2VEC#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/service/impl/SearchServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="606">
+          <caret line="150" column="40" lean-forward="true" selection-start-line="150" selection-start-column="40" selection-end-line="150" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.hello/controller/DommodityController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="180" column="36" lean-forward="true" selection-start-line="180" selection-start-column="36" selection-end-line="180" selection-end-column="36" />
         </state>
       </provider>
     </entry>

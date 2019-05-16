@@ -169,31 +169,46 @@ public class DommodityController {
     @RequestMapping ("searchRecommend")
     @ResponseBody
     public Object searchRecom(@RequestParam String queryWord){
+        //TODO design function to return some recommend word when the queryWord is not in the lexcion
         JSONObject jsonObject = new JSONObject();
+
+        Date date = new Date();
+        long time1 = date.getTime();
+
         Set<WordEntry> calculResultSet = searchService.calculDisSet(queryWord,resultNum);
-        String similar = "{";
-        String relative = "{";
+
+        date = new Date();
+        long time2 = date.getTime();
+        System.out.printf("time cost on calculResultSet: %d\n",time2-time1);
+
+        String similar = "";
+        String relative = "";
         String dou = "";
-
-        String complete = searchService.autoComplete(calculResultSet,queryWord, minScore,1);
+        String complete = "";
         String correct = searchService.correct(calculResultSet, queryWord, 0.4,1);
-        Set<WordEntry> similaySet = searchService.findTopCloseWithSameCharLimit(calculResultSet, queryWord,5,queryWord.length()/2, minScore);
-        Set<WordEntry> relativeSet =searchService.findTopClose(calculResultSet, queryWord,5, minScore);
 
-        Iterator<WordEntry> simIt = similaySet.iterator();
-        Iterator<WordEntry> relaIt = relativeSet.iterator();
-        int i=0;
-        while(simIt.hasNext()){
-            similar = similar +dou+ simIt.next().getName();
-            dou = ",";
+        if(!correct.equals("")){ // means that the queryWord is contained in lexicon
+            similar = "{";
+            relative = "{";
+            complete = searchService.autoComplete(calculResultSet,queryWord, minScore,1);
+            Set<WordEntry> similaySet = searchService.findTopCloseWithSameCharLimit(calculResultSet, queryWord,5,queryWord.length()/2, minScore);
+            Set<WordEntry> relativeSet =searchService.findTopClose(calculResultSet, queryWord,5, minScore);
+            Iterator<WordEntry> simIt = similaySet.iterator();
+            Iterator<WordEntry> relaIt = relativeSet.iterator();
+            int i=0;
+            while(simIt.hasNext()){
+                similar = similar +dou+ simIt.next().getName();
+                dou = ",";
+            }
+            similar = similar+"}";
+            dou = "";
+            while(relaIt.hasNext()){
+                relative = relative +  dou + relaIt.next().getName();
+                dou = ",";
+            }
+            relative = relative + "}";
         }
-        similar = similar+"}";
-        dou = "";
-        while(relaIt.hasNext()){
-            relative = relative +  dou + relaIt.next().getName();
-            dou = ",";
-        }
-        relative = relative + "}";
+
         jsonObject.put("returncode","200");
         jsonObject.put("correct",correct);
         jsonObject.put("complete",complete);

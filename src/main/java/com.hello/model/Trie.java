@@ -1,14 +1,7 @@
 package com.hello.model;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 
 /**
@@ -18,81 +11,84 @@ import java.util.Map;
  */
 public class Trie
 {
-    private int SIZE = 26;
     private TrieNode root;// 字典树的根
 
     class TrieNode // 字典树节点
     {
-        private int num;// 有多少单词通过这个节点,即由根至该节点组成的字符串模式出现的次数
-        private TrieNode[] son;// 所有的儿子节点
+        private HashMap<String,TrieNode> son;// 所有的儿子节点
         private boolean isEnd;// 是不是最后一个节点
         private char val;// 节点的值
+        //private String string;
+
+        @Override
+        public String toString() {
+            return "TrieNode{" +
+                    "son=" + son +
+                    ", isEnd=" + isEnd +
+                    ", val=" + val +
+                    //", string='" + string + '\'' +
+                    '}';
+        }
 
         TrieNode()
         {
-            num = 1;
-            son = new TrieNode[SIZE];
+            son = new HashMap<>();
             isEnd = false;
+
         }
     }
-    Trie() // 初始化字典树
+    public Trie() // 初始化字典树
     {
         root = new TrieNode();
     }
-    
+
 
     // 建立字典树
     public void insert(String str) // 在字典树中插入一个单词
     {
+        //System.out.println("insert : "+str );
         if (str == null || str.length() == 0)
         {
-            return;
+            System.out.println("empty string");
         }
         TrieNode node = root;
         char[] letters = str.toCharArray();//将目标单词转换为字符数组
         for (int i = 0, len = str.length(); i < len; i++)
         {
-            int pos = letters[i] - 'a';
-            if (node.son[pos] == null)  //如果当前节点的儿子节点中没有该字符，则构建一个TrieNode并复值该字符
-            {
-                node.son[pos] = new TrieNode();
-                node.son[pos].val = letters[i];
-            } 
-            else   //如果已经存在，则将由根至该儿子节点组成的字符串模式出现的次数+1
-            {
-                node.son[pos].num++;
+            if(node.son.containsKey(""+letters[i])){
+                node=node.son.get(""+letters[i]);
+            }else{
+                TrieNode newNode = new TrieNode();
+                newNode.val = letters[i];
+                /*String s = "";
+                for(int j=0;j<=i;j++){
+                    s += letters[j];
+                }
+                newNode.string=s;*/
+                node.son.put(""+letters[i],newNode);
+                node = node.son.get(""+letters[i]);
             }
-            node = node.son[pos];
         }
         node.isEnd = true;
+        //printAll(true,null);
     }
 
-    // 计算单词前缀的数量
-    public int countPrefix(String prefix)
-    {
-        if(prefix==null||prefix.length()==0)
-        {
-            return-1;
+    public String[] findWordsByPrefix(String prefix){
+        TrieNode node = findNodeByPrefix(prefix);
+        //System.out.println(node);
+        if(node == null)
+            return null;
+        ArrayList<String>result = new ArrayList();
+        preTraverse(result,node,prefix);
+        String[] resultArray = new String[result.size()];
+        for(int i=0;i<result.size();i++){
+            resultArray[i] = result.get(i);
         }
-        TrieNode node=root;
-        char[]letters=prefix.toCharArray();
-        for(int i=0,len=prefix.length(); i<len; i++)
-        {
-            int pos=letters[i]-'a';
-            if(node.son[pos]==null)
-            {
-                return 0;
-            }
-            else
-            {
-                node=node.son[pos];
-            }
-        }
-        return node.num;
+        return resultArray;
     }
 
     // 根据字符串找节点
-    public TrieNode findNodeByPrefix(String prefix)
+    private TrieNode findNodeByPrefix(String prefix)
     {
         if (prefix == null || prefix.length() == 0)
         {
@@ -102,42 +98,50 @@ public class Trie
         char[] letters = prefix.toCharArray();
         for (int i = 0, len = prefix.length(); i < len; i++)
         {
-            int pos = letters[i] - 'a';
-            if (node.son[pos] == null)
+            if (node.son.containsKey(""+letters[i]))
             {
-                return null;
+                node = node.son.get(""+letters[i]);
             }
             else
             {
-                node = node.son[pos];
+                return null;
             }
         }
         return node;
     }
 
     // 遍历经过此节点的单词.
-    public void preTraverse(ArrayList<String>result,TrieNode node, String prefix)
+    private void preTraverse(ArrayList<String>result,TrieNode node, String prefix)
     {
-        if (!node.isEnd)
+        if(node.isEnd)
+            result.add(prefix);
+        if (!node.son.isEmpty())
         {
-            for (TrieNode child : node.son)
+
+            for (TrieNode child : node.son.values())
             {
                 if (child != null)
                 {
                     preTraverse(result,child, prefix + child.val);
                 }
             }
-            return;
-        }
-        else{
-            result.add(prefix);
         }
     }
 
+/*
+    public void printAll(boolean isRoot,TrieNode node){
+        if(isRoot){
+            node = this.root;
+        }
+        for(TrieNode child : node.son.values()){
+            //System.out.println("this is "+node.string+", child is "+child.string);
 
-
-
-
+            if(child.isEnd)
+                System.out.println(child.string);
+            printAll(false,child);
+        }
+    }
+*/
     // 在字典树中查找一个完全匹配的单词.
     public boolean has(String str)
     {
@@ -149,10 +153,9 @@ public class Trie
         char[]letters=str.toCharArray();
         for(int i=0,len=str.length(); i<len; i++)
         {
-            int pos=letters[i]-'a';
-            if(node.son[pos]!=null)
+            if(node.son.containsKey(""+letters[i]))
             {
-                node=node.son[pos];
+                node=node.son.get(""+letters[i]);
             }
             else
             {
@@ -163,63 +166,10 @@ public class Trie
         return node.isEnd;
     }
 
-    // 前序遍历字典树.
-    public void preTraverse(TrieNode node)
-    {
-        if(node!=null)
-        {
-            System.out.print(node.val+"-");
-            for(TrieNode child:node.son)
-            {
-                preTraverse(child);
-            }
-        }
-    }
+
     public TrieNode getRoot()
     {
         return this.root;
     }
-    public static void main(String[]args) throws IOException
-    {
-        Trie tree=new Trie();
-        String[] dictionaryData= {"hello","student","computer","sorry","acm","people","experienced","who","reminds","everyday","almost"};
-        //构建字典
-        for(String str:dictionaryData)
-        {
-            tree.insert(str);
-        }
-        String filePath="C:\\Users\\Administrator\\Desktop\\sourceFile.txt";
-        File file=new File(filePath);
-        if(file.isFile() && file.exists())
-        { 
-            InputStreamReader read = new InputStreamReader(new FileInputStream(file));
-            BufferedReader bufferedReader = new BufferedReader(read);
-            String lineTxt = null;
-            Map<String,Integer> countMap=new HashMap<String,Integer>();
-            while((lineTxt = bufferedReader.readLine())!= null)
-            {
-                if(tree.has(lineTxt))
-                {
-                    if(countMap.containsKey(lineTxt))
-                    {
-                        countMap.put(lineTxt, countMap.get(lineTxt)+1);
-                    }
-                    else
-                    {
-                        countMap.put(lineTxt, 1);
-                    }
-                }
-                else
-                {
-                    System.out.println(lineTxt+"不在字典中！");
-                }
-            }
-            for(String s:countMap.keySet())
-            {
-                System.out.println(s+"出现的次数"+countMap.get(s));
-            }
-            read.close();
-        }
-    }   
-    
+
 }

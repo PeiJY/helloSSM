@@ -4,6 +4,8 @@ import com.hello.model.WordEntry;
 import com.hello.service.ISearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -73,6 +75,8 @@ public class SearchServiceImpl implements ISearchService {
     @Override
     public String correct (Set<WordEntry> calculResultSet ,String queryWord ,double scoreLimit,int editDistanceLimit ){// 暂时不考虑字符匹配和出现频率
         //System.out.println(w2v.getWordMap().toString());
+        if(w2v.has(queryWord))
+            return "";
         Set<WordEntry> resultSet = find(calculResultSet,queryWord,scoreLimit,2,editDistanceLimit);
         Iterator<WordEntry> it = resultSet.iterator();
         if(it.hasNext()) {
@@ -92,7 +96,12 @@ public class SearchServiceImpl implements ISearchService {
      */
     @Override
     public Set<WordEntry> findTopClose(Set<WordEntry> calculResultSet ,String queryWord,int num, double scoreLimit){
+        Date date = new Date();
+        long time1 = date.getTime();
         Set<WordEntry> resultSet = find(calculResultSet,queryWord,scoreLimit,num,999);
+        date = new Date();
+        long time2 = date.getTime();
+        System.out.printf("time cost on relative: %d\n",time2-time1);
         return resultSet;
     }
 
@@ -108,7 +117,12 @@ public class SearchServiceImpl implements ISearchService {
      */
     @Override
     public Set<WordEntry> findTopCloseWithSameCharLimit(Set<WordEntry> calculResultSet  ,String queryWord, int num,int editDistanceLimit , double scoreLimit){
+        Date date = new Date();
+        long time1 = date.getTime();
         Set<WordEntry> resultSet = find(calculResultSet,queryWord,scoreLimit,num,editDistanceLimit);
+        date = new Date();
+        long time2 = date.getTime();
+        System.out.printf("time cost on similar: %d\n",time2-time1);
         return resultSet;
     }
 
@@ -121,14 +135,41 @@ public class SearchServiceImpl implements ISearchService {
      */
     @Override
     public String autoComplete( Set<WordEntry> calculResultSet,String queryWord,double scoreLimit,int editDistanceLimit){
-        // TODO dictionary tree for string match
+        Date date = new Date();
+        long time1 = date.getTime();
 
+
+        /** to record time cost */
+        String[] words = w2v.findWordsByPrefix(queryWord);
+        date = new Date();
+        long time2 = date.getTime();
+        System.out.printf("time cost on search trie tree: %d\n",time2-time1);
+        /*
+        for(int i=0;i<words.length;i++){
+            System.out.println(words[i]);
+        }*/
+        System.out.println(words.length);
+        float minDis = w2v.compare2(queryWord,words[0]);
+        String minDisWord = words[0];
+        for(int i=1;i<words.length;i++){
+            float dis = w2v.compare2(queryWord,words[i]);
+            if(dis<minDis && queryWord!=words[i]){
+                minDis=dis;
+                minDisWord = words[i];
+            }
+        }
+
+        /*
         Set<WordEntry> resultSet = find(calculResultSet,queryWord,scoreLimit,2,editDistanceLimit);
         Iterator<WordEntry> it = resultSet.iterator();
         String result = "";
         if(it.hasNext())
             result  = it.next().getName();
-        return result;
+            */
+        date = new Date();
+        time2 = date.getTime();
+        System.out.printf("time cost on completing: %d\n",time2-time1);
+        return minDisWord;
     }
 
 
@@ -143,7 +184,7 @@ public class SearchServiceImpl implements ISearchService {
      */
     private Set<WordEntry> find (Set<WordEntry> calculResultSet , String queryWord,double scoreLimit, int top, int editDistanceLimit) {
 
-        System.out.printf("queryWord is %s\n",queryWord);
+        //System.out.printf("queryWord is %s\n",queryWord);
         int count = 0;
         /** filtration according scoreLimit, editDistanceLimit */
         Set<WordEntry> resultSet = new HashSet<>();
@@ -157,7 +198,6 @@ public class SearchServiceImpl implements ISearchService {
             if(calculEditDis(queryWord,entry.getName())>editDistanceLimit)
                 continue;
             resultSet.add(entry);
-            System.out.printf("result add %s\n",entry.getName());
             count += 1;
         }
         return resultSet;
@@ -205,7 +245,6 @@ public class SearchServiceImpl implements ISearchService {
                 }
             }
         }
-        System.out.printf("edit dis  %s %s %d\n",word1,word2,arr[word1.length()][word2.length()]);
         return arr[word1.length()][word2.length()];
     }
 

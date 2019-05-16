@@ -1,5 +1,6 @@
 package com.hello.service.impl;
 
+import com.hello.model.Trie;
 import com.hello.model.WordEntry;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import java.util.Map.Entry;
 public class Word2VEC {
 
 	private HashMap<String, float[]> wordMap = new HashMap<String, float[]>();
+	public Trie trieTree = new Trie();
 
 	private int words;
 	private int size;
@@ -34,6 +36,9 @@ public class Word2VEC {
 		}
 	}
 
+	public String[] findWordsByPrefix(String prefix){
+		return trieTree.findWordsByPrefix(prefix);
+	}
 
 
 	public void loadTxtModel(String path) throws IOException{
@@ -69,6 +74,7 @@ public class Word2VEC {
 					vectors[j] /= len;
 				}
 				wordMap.put(word, vectors);
+				trieTree.insert(word);
 			}
 			br.close();
 		}catch(Exception e){
@@ -196,6 +202,9 @@ public class Word2VEC {
 			insertTopN(name, dist, wordEntrys);
 		}
 		return new TreeSet<WordEntry>(wordEntrys);
+	}
+	public boolean has(String queryWord){
+		return trieTree.has(queryWord);
 	}
 
 	private void insertTopN(String name, float score, List<WordEntry> wordsEntrys) {
