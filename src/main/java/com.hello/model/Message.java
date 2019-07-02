@@ -1,10 +1,13 @@
 package com.hello.model;
+import net.sf.json.JSONObject;
+
+import javax.json.JsonObject;
 import java.sql.Timestamp;
 import java.util.Date;
 
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * author Pei Jiyuan
+ * date 2019/4/27
  * desc
  */
 
@@ -68,17 +71,15 @@ public class Message {
         this.messageDate = messageDate;
     }
 
-
-
     @Override
     public String toString() {
-        return "Message{" +
-                "messageId=" + messageId +
-                ", fromId=" + fromId +
-                ", fromName='" + fromName + '\'' +
-                ", toId=" + toId +
-                ", messageText='" + messageText + '\'' +
-                ", messageDate=" + messageDate +
-                '}';
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("messageId",String.valueOf(messageId));
+        jsonObject.put("fromId",String.valueOf(fromId));
+        jsonObject.put("fromName",fromName);
+        jsonObject.put("toId",String.valueOf(toId));
+        jsonObject.put("messageText",messageText);
+        jsonObject.put("messageDate",messageDate);
+        return jsonObject.toString();
     }
 }

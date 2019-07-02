@@ -3,10 +3,11 @@ package com.hello.service;
 import com.hello.model.DommodityTpye;
 import com.hello.model.Status;
 import com.hello.model.Dommodity;
+import com.hello.model.User;
 
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * date Pei Jiyuan
+ * author 2019/4/27
  * desc
  */
 
@@ -14,17 +15,17 @@ public interface IDommodityService {
 
 
     public long insertDommodity( String name,
-                                 String description, long temporaryid,
+                                 String description, User owner,
                                  Status status,String paytype, DommodityTpye[] type,
                                  String putawayTime, String availableTime,
                                 long price, String address,String operation);
 
-    public int statusChange(long id,long temporaryid,Status status);
+    public int statusChange(long id,User user,Status status);
 
-    public int subscribe(long dommodityid, long temporaryid, String time);
+    public int subscribe(long dommodityid, User user, String time);
 
     public int modityDommodity(String name,
-                               String description, long temporaryid,
+                               String description, User owner,
                                Status status,String paytype, DommodityTpye[] type,
                                String putawayTime, String availableTime,
                                long price, String address,String operation);
@@ -35,7 +36,7 @@ public interface IDommodityService {
 
     public String[] findType(long dommodityid);
 
-    public int report(long dommodityid,long temporaryid,String reason);
+    public int report(long dommodityid, User reporter, String reason);
 
 
 }

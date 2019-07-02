@@ -1,11 +1,13 @@
 package com.hello.model;
 
+import net.sf.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * author Pei Jiyuan
+ * date 2019/4/27
  * desc
  */
 
@@ -67,23 +69,14 @@ public class Report {
         this.objectid = objectid;
     }
 
-    @Override
-    public String toString() {
-        return "Report{" +
-                "reportid=" + reportid +
-                ", reason='" + reason + '\'' +
-                ", date='" + date + '\'' +
-                ", objectid=" + objectid +
-                ", reporterid=" + reporterid +
-                '}';
-    }
 
-    public String returnMassage(String reportname){
-        return "{"+
-                "\"reportid\":\"" + String.valueOf(reportid) + '\"' +
-                ",\"reason\":\"" + reason + '\"' +
-                ",\"date\":\"" + date + '\"' +
-                ",\"reportName\":\"" + reportname + '\"' +
-                ",\"objectid\":\""+ String.valueOf(objectid)+"\""+"}";
+    public String toString(String reportname) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("reportid",String.valueOf(reportid));
+        jsonObject.put("reason", reason);
+        jsonObject.put("date", date);
+        jsonObject.put("reportName", reportname);
+        jsonObject.put("objectid", String.valueOf(objectid));
+        return jsonObject.toString();
     }
 }

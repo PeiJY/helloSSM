@@ -2,8 +2,8 @@ package com.hello.service;
 
 import com.hello.model.User;
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * author Pei Jiyuan
+ * date 2019/4/27
  * desc
  */
 
@@ -31,6 +31,15 @@ public interface IUserService {
 
     public User findUserByTemporaryid(long temporaryid);
 
-    public User findUserByUsername(String username);
+    public User[] findUsersByUsername(String username);//!!!!
+
+    public boolean comparePassword(User loginUser, User userInDataBase);
+
+    public User findLinkedUserByUsername(String username);
+
+    public User findLinkedUserByEmail(String email);
+
+   // public Object temporaryidVerfy(long temporaryid);
+
 
 }

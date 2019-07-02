@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.PutMapping;
 
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * author Pei Jiyuan
+ * date 2019/4/27
  * desc
  */
 

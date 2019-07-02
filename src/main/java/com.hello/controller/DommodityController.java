@@ -5,6 +5,7 @@ import com.hello.model.*;
 import com.hello.service.IDommodityService;
 import com.hello.service.ISearchService;
 import com.hello.service.IUserService;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,15 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Set;
-
-import static java.lang.Integer.max;
+import java.util.*;
 
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/28
+ * author Pei Jiyuan
+ * datetime 2019/6/27
  * desc
  */
 
@@ -38,6 +35,10 @@ public class DommodityController {
     static int resultNum = 10;
     static double minScore = 0.1;
 
+    //private Map<String,String> ReturnCodeMap = new UserController().ReturnCodeMap;
+
+    public Map<String,String> ReturnCodeMap = ReturnCode.getReturnCodeMap();
+
     // TODO add load mode interface for administer
 
     @RequestMapping ("createDommodity")
@@ -47,210 +48,289 @@ public class DommodityController {
                          @RequestParam String status, @RequestParam String type,
                          @RequestParam String putawaytime, @RequestParam String availabletime,
                          @RequestParam String price,@RequestParam String address,@RequestParam String operation) {
-        long ltemporaryid = Long.parseLong(temporaryid);
-        long lprice = Long.parseLong(price);
 
-        String[] tlt = type.split(",");
-        DommodityTpye[] dtype = new DommodityTpye[tlt.length];
-        for(int i=0;i<tlt.length;i++){
-            dtype[i]=DommodityTpye.valueOf(tlt[i]);
+        /** convert all String type data into corresponding type */
+        long ltemporaryid = Long.parseLong(temporaryid);
+        JSONObject jsonObject = new JSONObject();
+
+        /** login verify */
+        User user = userService.findUserByTemporaryid(ltemporaryid);
+        if(ltemporaryid == 0 || user == null){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnloginUser"));
+            return jsonObject.toString();
+        }
+
+        long lprice = Long.parseLong(price);
+        String[] typeArr = type.split(",");
+        DommodityTpye[] dtype = new DommodityTpye[typeArr.length];
+        for(int i = 0; i < typeArr.length; i ++){
+            dtype[i] = DommodityTpye.valueOf(typeArr[i]);
         }
         Status dstatus = Status.valueOf(status);
-        System.out.println("Successfully create");
-        long result = this.dommodityService.insertDommodity(name, description,ltemporaryid, dstatus,paytype, dtype, putawaytime, availabletime,lprice,address,operation);
-        if(result >= 0) return"{\"returncode\":\"200\",\"dommodityid\":\""+String.valueOf(result)+"\"}";
-        else return "{\"returncode\":\"201\"}";
+
+        /** create dommodity */
+        long result = this.dommodityService.insertDommodity(name, description, user, dstatus, paytype,
+                dtype, putawaytime, availabletime,lprice,address,operation);
+        if(result >= 0) {
+            jsonObject.put("returncode",ReturnCodeMap.get("Success"));
+            jsonObject.put("dommodityid",String.valueOf(result));
+            return jsonObject.toString();
+        }
+        if(result == -2) {
+            jsonObject.put("returncode",ReturnCodeMap.get("IllegalDommoditylInfo"));
+            return jsonObject.toString();
+        }
+        jsonObject.put("returncode",ReturnCodeMap.get("UnknownReason"));
+        return jsonObject.toString();
     }
 
     @RequestMapping ("statusChange")
     @ResponseBody
-    public String statusChange(@RequestParam long dommodityid,@RequestParam long temporaryid,@RequestParam String status) {
+    public String statusChange(@RequestParam long dommodityid,
+                               @RequestParam long temporaryid,
+                               @RequestParam String status) {
         Status s = Status.valueOf(status);
-        if(temporaryid==0)return "{\"returncode\":\"201\"}";
-        System.out.println("disable");
-        int result = this.dommodityService.statusChange(dommodityid,temporaryid,s);
-        switch (result){
-            case 0: return "{\"returncode\":\"200\"}";
-            default:return "{\"returncode\":\"201\"}";
+        JSONObject jsonObject = new JSONObject();
+
+        /** login verify */
+        User user = userService.findUserByTemporaryid(temporaryid);
+        if(temporaryid == 0 || user == null){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnloginUser"));
+            return jsonObject.toString();
         }
+
+        int result = this.dommodityService.statusChange(dommodityid,user,s);
+        if(result == -2){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnexistedDommodity"));
+            return jsonObject.toString();
+        }
+        if(result == -3){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnauthorizedOperation"));
+            return jsonObject.toString();
+        }
+        jsonObject.put("returncode",ReturnCodeMap.get("UnknownReason"));
+        return jsonObject.toString();
     }
 
     @RequestMapping ("report")
     @ResponseBody
     public String report(@RequestParam long dommodityid,@RequestParam long temporaryid,@RequestParam String reason) {
-        if(temporaryid==0)return "{\"returncode\":\"201\"}";
-        int result = this.dommodityService.report(dommodityid,temporaryid,reason);
-        if(result >=0)return "{\"returncode\":\"200\"}";
-        else return "{\"returncode\":\"201\"}";
+        JSONObject jsonObject = new JSONObject();
+
+        /** login verify */
+        User user = userService.findUserByTemporaryid(temporaryid);
+        if(temporaryid == 0 || user == null){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnloginUser"));
+            return jsonObject.toString();
+        }
+
+        int result = this.dommodityService.report(dommodityid,user,reason);
+        if(result >= 0){
+            jsonObject.put("returncode",ReturnCodeMap.get("Success"));
+            return jsonObject.toString();
+        }
+        if(result == -2){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnexistedDommodity"));
+            return jsonObject.toString();
+        }
+        jsonObject.put("returncode",ReturnCodeMap.get("UnknownReason"));
+        return jsonObject.toString();
     }
 
     @RequestMapping ("getAllType")
     @ResponseBody
     public String getAllType() {
-        String result = "{\"returncode\":\"200\",\"types\":[";
-        String dou = "";
+
+        JSONArray allType = new JSONArray();
         for (DommodityTpye e : DommodityTpye.values()) {
-           result += dou + "\"" +e.toString() +"\"";
-           dou =",";
+            allType.add(e.toString());
         }
-        result += "]}";
-        return result;
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("returncode",ReturnCodeMap.get("Success"));
+        jsonObject.put("types",allType);
+        return jsonObject.toString();
     }
-/*
-    @RequestMapping ("selectAll")
-    @ResponseBody
-    public String selectAll(){
-        Object[][] all = this.dommodityService.selectAll();
-        System.out.println(all.length);
-        String result = "";
-        String dou = "";
-        if(all.length==0)return"{\"returncode\":\"201\"}";
-        result += "{\"returncode\":\"200\",";
-        result += "\"dommoditynumber\":\"";
-        result += String.valueOf(all.length) + "\",\"dommoditylist\":[";
-        for(int i=0;i<all.length;i++){
-            result += dou+((Dommodity)all[i][0]).Message(((User)all[i][1]).getUsername());
-            //result += dou+sendgenerater.sendcommodityGenerate((Dommodity)all[i][0]).toString();
-            dou=",";
-        }
-        result += "]}";
-        return result;
-    }
-*/
+
     @RequestMapping ("personalSelect")
     @ResponseBody
-    public String personalDommodity(@RequestParam long temporaryid){
-        String result="";
+    public String personalSelect(@RequestParam long temporaryid){
+        String result = "";
         User user = userService.findUserByTemporaryid(temporaryid);
+        JSONObject jsonObject = new JSONObject();
+        if(temporaryid == 0 || user == null){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnloginUser"));
+            return jsonObject.toString();
+        }
         String conditions = "where ownerid =" + String.valueOf(user.getId());
-        result+=conditionalSelete(conditions,"","");
+        result += conditionalSelete(conditions,"","");
         return result;
     }
 
 
     @RequestMapping ("individualSelect")
     @ResponseBody
-    public String individualSelect(@RequestParam String username){
+    public String personalSelectSellig(@RequestParam String username){
         String result="";
-        User user = userService.findUserByUsername(username);
-        long userid = user.getId();
+        User user = userService.findLinkedUserByUsername(username);
+        JSONObject jsonObject = new JSONObject();
+        if(user == null){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnexistedUsername"));
+            return jsonObject.toString();
+        }
         String conditions = "where ownerid =" + String.valueOf(user.getId()+" and status = \"SELLING\"");
-        result+=conditionalSelete(conditions,"order by putawaytime desc","");
+        result += conditionalSelete(conditions,"order by putawaytime desc","");
         return result;
     }
 
     @RequestMapping ("conditionalSelect")
     @ResponseBody
-    public String conditionalSelete(@RequestParam String conditions,@RequestParam String orders,@RequestParam String number){
+    public String conditionalSelete(@RequestParam String conditions,
+                                    @RequestParam String orders,
+                                    @RequestParam String number){
         // TODO add search keyword into word2vec model
         Object[][] all = this.dommodityService.conditionalSelete(conditions,orders,number);
-        System.out.println(all.length);
-        String result = "";
-        String dou = "";
-        if(all.length==0)return"{\"returncode\":\"200\",\"dommoditynumber\":\"0\"}";
-        result += "{\"returncode\":\"200\",";
-        result += "\"dommoditynumber\":\"";
-        result += String.valueOf(all.length) + "\",\"dommoditylist\":[";
-        for(int i=0;i<all.length;i++){
-            result += dou+((Dommodity)all[i][0]).Message(((User)all[i][1]).getUsername());
-            //result += dou+sendgenerater.sendcommodityGenerate((Dommodity)all[i][0]).toString();
-            dou=",";
+        JSONArray allDommodityJSONArr = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+        if(all == null || all.length == 0){
+            jsonObject.put("returncode",ReturnCodeMap.get("Success"));
+            jsonObject.put("dommoditynumber","0");
+            return jsonObject.toString();
         }
-        result += "]}";
-        return result;
+        for(int i=0;i<all.length;i++){
+            allDommodityJSONArr.add(((Dommodity)all[i][0]).toString(((User)all[i][1]).getUsername()));
+        }
+        jsonObject.put("returncode",ReturnCodeMap.get("Success"));
+        jsonObject.put("dommoditynomber",String.valueOf(all.length));
+        jsonObject.put("dommoditylist",allDommodityJSONArr);
+        return jsonObject.toString();
     }
 
     /**
-     * 根据已有的woed2vec训练结果，对搜索的关键词进行语义上的相似推荐.
+     * generate the searching recommendation (relative, similar, autocorrect, autocomplete) for the query key word,
+     * according the training result of w2v and the tiretree of all existed words.
      *
-     * @param queryWord 查询的关键词.
-     * @return 自动补全，自动纠错，相关和相似搜素推荐.
+     * @param queryWord the query key word
+     * @return 4 searching recommendation (relative, similar, autocorrect, autocomplete)
      */
+    //TODO add word frequency into calculatioon
     @RequestMapping ("searchRecommend")
     @ResponseBody
     public Object searchRecom(@RequestParam String queryWord){
-        //TODO design function to return some recommend word when the queryWord is not in the lexcion
-        JSONObject jsonObject = new JSONObject();
 
-        Date date = new Date();
+
+        Date date = new Date();// used to calculate time cost
         long time1 = date.getTime();
 
-        Set<WordEntry> calculResultSet = searchService.calculDisSet(queryWord,resultNum);
-
-        date = new Date();
-        long time2 = date.getTime();
-        System.out.printf("time cost on calculResultSet: %d\n",time2-time1);
-
-        String similar = "";
-        String relative = "";
-        String dou = "";
+        System.out.println("---------- searchRecommend, queryWord is "+queryWord+" , time stamp is "+ String.valueOf(time1) + " ----------");
+        String correct = "";
+        JSONArray similarJSONArr = new JSONArray();
+        JSONArray relativeJSONArr = new JSONArray();
         String complete = "";
-        String correct = searchService.correct(calculResultSet, queryWord, 0.4,1);
+        if(!searchService.exist(queryWord)) {// if the queryWord is not exist in the lexicon, just autoCorrect
+            correct = searchService.autoCorrect(queryWord);
+            System.out.println("the result of correct is " + correct);
+        }
+        else{ // means that the queryWord is existed in lexicon
+            Set<WordEntry> closestWordSet = searchService.findClosestWordSet(queryWord, resultNum);
+            date = new Date();
+            long time2 = date.getTime();
+            System.out.printf("time cost on calculResultSet: %d\n",time2-time1);
+            System.out.println("key word is in the lexicon");
 
-        if(!correct.equals("")){ // means that the queryWord is contained in lexicon
-            similar = "{";
-            relative = "{";
-            complete = searchService.autoComplete(calculResultSet,queryWord, minScore,1);
-            Set<WordEntry> similaySet = searchService.findTopCloseWithSameCharLimit(calculResultSet, queryWord,5,queryWord.length()/2, minScore);
-            Set<WordEntry> relativeSet =searchService.findTopClose(calculResultSet, queryWord,5, minScore);
+            complete = searchService.autoComplete(queryWord);
+            Set<WordEntry> similaySet = searchService.filterClosestWordsWithEditDistanceLimit
+                    (closestWordSet, queryWord, 5, minScore, queryWord.length()/2);
+            Set<WordEntry> relativeSet =searchService.filterClosestWords(closestWordSet, queryWord,5, minScore);
             Iterator<WordEntry> simIt = similaySet.iterator();
             Iterator<WordEntry> relaIt = relativeSet.iterator();
-            int i=0;
             while(simIt.hasNext()){
-                similar = similar +dou+ simIt.next().getName();
-                dou = ",";
+                similarJSONArr.add(simIt.next().getName());
             }
-            similar = similar+"}";
-            dou = "";
             while(relaIt.hasNext()){
-                relative = relative +  dou + relaIt.next().getName();
-                dou = ",";
+                relativeJSONArr.add(relaIt.next().getName());
             }
-            relative = relative + "}";
         }
-
-        jsonObject.put("returncode","200");
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("returncode",ReturnCodeMap.get("Success"));
         jsonObject.put("correct",correct);
         jsonObject.put("complete",complete);
-        jsonObject.put("similar",similar);
-        jsonObject.put("relative",relative);
-        //jsonObject.put("mapsize",String.valueOf(searchService.getMapSize()));
+        jsonObject.put("similar",similarJSONArr);
+        jsonObject.put("relative",relativeJSONArr);
+        System.out.println("-------------------------------------------------------------------------------------");
         return jsonObject;
     }
 
     @RequestMapping ("modifyDommodity")
     @ResponseBody
     public String modify(@RequestParam String temporaryid,@RequestParam String name,
-                         @RequestParam String description,
-                         @RequestParam String status, @RequestParam String type, @RequestParam String paytype,
-                         @RequestParam String putawaytime, @RequestParam String availabletime,@RequestParam String price,
-                         @RequestParam String address,@RequestParam String operation) {
-        long ltemporaryid = Long.parseLong(temporaryid);
-        long lprice = Long.parseLong(price);
+                         @RequestParam String description, @RequestParam String status,
+                         @RequestParam String type, @RequestParam String paytype,
+                         @RequestParam String putawaytime, @RequestParam String availabletime,
+                         @RequestParam String price, @RequestParam String address,@RequestParam String operation) {
+        JSONObject jsonObject = new JSONObject();
 
+        /** login verify */
+        long ltemporaryid = Long.parseLong(temporaryid);
+        User user = userService.findUserByTemporaryid(ltemporaryid);
+        if(ltemporaryid == 0 || user == null){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnloginUser"));
+            return jsonObject.toString();
+        }
+
+        /** type convert */
+        long lprice = Long.parseLong(price);
         String[] tlt = type.split(",");
         DommodityTpye[] dtype = new DommodityTpye[tlt.length];
         for(int i=0;i<tlt.length;i++){
             dtype[i]=DommodityTpye.valueOf(tlt[i]);
         }
-        //DommodityTpye dtype = DommodityTpye.valueOf(type);
         Status dstatus = Status.valueOf(status);
-        System.out.println("Successfully modify receive");
-        int result = this.dommodityService.modityDommodity(name, description,ltemporaryid, dstatus, paytype,dtype, putawaytime, availabletime,lprice,address,operation);
-        if(result ==0) return"{\"returncode\":\"201\"}";
-        else return "{\"returncode\":\"200\"}";
+
+        int result = this.dommodityService.modityDommodity(name, description,user, dstatus, paytype,dtype, putawaytime, availabletime,lprice,address,operation);
+
+        if(result == 0){
+            jsonObject.put("returncode",ReturnCodeMap.get("Success"));
+            return jsonObject.toString();
+        }
+        if(result == -1){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnloginUser"));
+            return jsonObject.toString();
+        }
+        if(result == -2){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnexistedDommodity"));
+            return jsonObject.toString();
+        }
+        jsonObject.put("returncode",ReturnCodeMap.get("UnknownReason"));
+        return jsonObject.toString();
     }
 
     @RequestMapping ("subscribe")
     @ResponseBody
     public String subscribe(@RequestParam long dommodityid,@RequestParam long temporaryid){
-        if(temporaryid==0)return "{\"returncode\":\"201\"}";
-        Date now = new Date( );
-        int result = this.dommodityService.subscribe(dommodityid,temporaryid,now.toString());
-        switch (result){
-            case 0: return "{\"returncode\":\"200\"}";
-            default:return "{\"returncode\":\"201\"}";
+        JSONObject jsonObject = new JSONObject();
+
+        /** login verify */
+        User user = userService.findUserByTemporaryid(temporaryid);
+        if(temporaryid == 0 || user == null){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnloginUser"));
+            return jsonObject.toString();
         }
 
+        Date now = new Date( );
+        int result = this.dommodityService.subscribe(dommodityid, user, now.toString());
+        if(result >= 0){
+            jsonObject.put("returncode",ReturnCodeMap.get("Success"));
+            return jsonObject.toString();
+        }
+        if(result == -1){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnloginUser"));
+            return jsonObject.toString();
+        }
+        if(result == -2){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnexistedDommodity"));
+            return jsonObject.toString();
+        }
+        jsonObject.put("returncode",ReturnCodeMap.get("UnknownReason"));
+        return jsonObject.toString();
     }
 }

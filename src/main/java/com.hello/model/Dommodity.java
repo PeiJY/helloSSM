@@ -1,10 +1,13 @@
 package com.hello.model;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import java.util.Date;
 
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * author Pei Jiyuan
+ * date 2019/4/27
  * desc
  */
 
@@ -63,7 +66,7 @@ public class Dommodity {
         this.ownerid = ownerid;
         this.status = status;
         this.paytype = paytype;
-        //this.type = type;
+
         this.putawayTime = putawayTime;
         this.availableTime = availableTime;
         this.operation = operation;
@@ -75,7 +78,6 @@ public class Dommodity {
     public long getId() {
         return id;
     }
-
 
     public String getOperation() {
         return operation;
@@ -145,67 +147,26 @@ public class Dommodity {
         this.availableTime = availableTime;
     }
 
-    @Override
-    public String toString() {
-        return "Commodity{" +
-                "id=" + String.valueOf(id) +
-                ", name='" + name + '\'' +'\n'+
-                ", owner='" + String.valueOf(ownerid) + '\'' +'\n'+
-                ", status='" + status + '\'' +
-                ", paytype=" + paytype +
-                ", type='" + type + '\'' +
-                ", operation='"+operation+'\''+
 
-                ", putawayTime='" + putawayTime + '\'' +
-                ", availableTime='" + availableTime + '\'' +
-                '}';
-    }
+    public String toString(String owner) {
 
-
-    public String Message(String owner) {
-        String types = "[";
-        String dou = "";
+        JSONArray typeJSONArr = new JSONArray();
         for(String i: this.type){
-            types+=dou+"\""+i+"\"";
-            dou = ",";
+            typeJSONArr.add(i);
         }
-        types +="]";
-        return "{" +
-                "\"id\":\"" + id +"\""+
-                ", \"name\":\"" + name + "\"" +
-                ", \"description\":\"" + description + '\"' +
-                ", \"owner\":\"" + owner + '\"' +
-                ", \"status\":\"" + status + '\"' +
-                ", \"putawayTime\":\"" + putawayTime + '\"' +
-                ", \"availableTime\":\"" + availableTime + '\"' +
-                ", \"operation\":\""+operation+'\"'+
-                ", \"price\":\"" + price + '\"' +
-                ", \"address\":\"" + address + '\"' +
-                ", \"paytype\":\"" + paytype + '\"' +
-                ", \"type\":" + types +
-                '}';
+        JSONObject dommodity = new JSONObject();
+        dommodity.put("id",String.valueOf(id));
+        dommodity.put("name",name);
+        dommodity.put("description",description);
+        dommodity.put("owner",owner);
+        dommodity.put("status",status);
+        dommodity.put("putawayTime",putawayTime);
+        dommodity.put("availableTime",availableTime);
+        dommodity.put("operation",operation);
+        dommodity.put("price",String.valueOf(price));
+        dommodity.put("address",address);
+        dommodity.put("paytype",paytype);
+        dommodity.put("type",typeJSONArr);
+        return dommodity.toString();
     }
-
-    public String getInfo() {
-        String tt = "";
-        String d = "";
-        for (String  t:this.type
-             ) {
-            tt+=d+t;
-            d=",";
-        }
-        return "id=" + String.valueOf(id) +
-                ", name=" + name +
-                ", status=" + status +
-                ", paytype={" + paytype +"}"+
-                //", type=" + type  +
-                ", putawayTime=" + putawayTime +
-                ", availableTime=" + availableTime+
-                ", price="+price+
-                ", operation="+operation+
-                ",address="+address+
-                ",type={"+tt+"}";
-
-    }
-
 }

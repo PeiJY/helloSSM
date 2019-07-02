@@ -1,11 +1,14 @@
 package com.hello.model;
 
+import net.sf.json.JSONObject;
+
+import javax.json.JsonObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * author Pei Jiyuan
+ * date 2019/4/27
  * desc
  */
 
@@ -65,20 +68,13 @@ public class ChatRecord {
     }
 
     @Override
-    public String toString() {
-        return "User{" +
-                "id=" +String.valueOf(id) +
-                ", message='" + message + '\'' +
-                ", time='" + time + '\'' +
-                '}';
-    }
-
-    public String returnMassage(){
-        return "{"+
-                "\"id\":\"" + String.valueOf(id) + '\"' +
-                ",\"srcname\":\"" + srcname + '\"' +
-                ",\"recvname\":\"" + recvname + '\"' +
-                ",\"message\":\"" + message + '\"' +
-                ",\"time\":\""+ time+"\""+"}";
+    public String toString(){
+        JSONObject chatRecord = new JSONObject();
+        chatRecord.put("id",String.valueOf(id));
+        chatRecord.put("srcname",srcname);
+        chatRecord.put("recvname",recvname);
+        chatRecord.put("message",message);
+        chatRecord.put("time",time.toString());
+        return chatRecord.toString();
     }
 }

@@ -1,13 +1,15 @@
 package com.hello.model;
 
+import net.sf.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.time;
 
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * author Pei Jiyuan
+ * date 2019/4/27
  * desc
  */
 
@@ -24,8 +26,8 @@ public class Order {
     private String status;
 
 
-    @Override
-    public String toString() {
+
+   /* public String toString() {
         return "Order{" +
                 "orderid=" + String.valueOf(orderid) +
                 ", starttime='" + starttime + '\'' +
@@ -38,21 +40,20 @@ public class Order {
                 ",price= '"+ String.valueOf(price)+"\'"+
                 ",status= '"+ status+"\'"+
                 '}';
-    }
+    }*/
 
-    public String returnMassage(String buyername,String sellername){
-        return "{"+
-                "\"orderid\":\"" + String.valueOf(orderid) + '\"' +
-                "\"dommodityid\":\"" + String.valueOf(dommodityid) + '\"' +
-                ",\"starttime\":\"" + starttime + '\"' +
-                ",\"endtime\":\"" + endtime + '\"' +
-                ",\"initiator\":\"" + initiator + '\"' +
-                ",\"buyername\":\"" + buyername + '\"' +
-                ",\"sellername\":\"" + sellername + '\"' +
-                ",\"number\":\"" + String.valueOf(number) + '\"' +
-                ",\"price\":\"" + String.valueOf(price) + '\"' +
-                ",\"status\":\"" + status + '\"' +
-                ",\"status\":\""+ String.valueOf(dommodityid)+"\""+"}";
+    public String toString(String buyername, String sellername){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("dommodityid",String.valueOf(dommodityid));
+        jsonObject.put("starttime",starttime);
+        jsonObject.put("endtime",endtime);
+        jsonObject.put("initiator",initiator);
+        jsonObject.put("buyername",buyername);
+        jsonObject.put("sellername",sellername);
+        jsonObject.put("number",String.valueOf(number));
+        jsonObject.put("price",String.valueOf(price));
+        jsonObject.put("status",status);
+        return jsonObject.toString();
     }
     public Order(){
         starttime = new Date();
@@ -174,7 +175,5 @@ public class Order {
         endtime = null;
         status ="P";
     }
-
-
 
 }

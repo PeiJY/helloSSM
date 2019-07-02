@@ -2,7 +2,6 @@ package com.hello.service.impl;
 
 import com.hello.model.Trie;
 import com.hello.model.WordEntry;
-import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.*;
@@ -29,11 +28,12 @@ public class Word2VEC {
 
 
 	public Word2VEC(String modelPath){
+		/*
 		try {
 			loadTxtModel(modelPath);
 		}catch (Exception e){
 			System.out.println(e.getMessage());
-		}
+		}*/
 	}
 
 	public String[] findWordsByPrefix(String prefix){
@@ -43,7 +43,7 @@ public class Word2VEC {
 
 	public void loadTxtModel(String path) throws IOException{
 		// TODO add frequency of word into model
-		System.out.println("load txt");
+		System.out.println("-------- loading txt lexcion --------");
 		try{
 			FileInputStream fis = new FileInputStream(path);
 			InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
@@ -53,16 +53,17 @@ public class Word2VEC {
 
 			int words = Integer.parseInt(paraSubString[0]);
 			int dimension = Integer.parseInt(paraSubString[1]);
-			System.out.printf("%d %d \n",words,dimension);
+			System.out.printf("### total number of words in lexcion is : %d \n### the dimension of word vector is : %d \n",words,dimension);
 			float[] vectors = null;
 			double len = 0;
 			for (int i = 0; i < words; i++) {
-				if(i%100==0)
-					System.out.println(i);
 				String item = br.readLine();
 				String[] subItem = item.split(" ");
 				String word = subItem[0];
-				//System.out.println(word);
+				if(i%10000==0) {
+					System.out.printf("## loading txt lexcion, current loaded words number : %d\n", i);
+					System.out.println("the loaded word is " + word);
+				}
 				vectors = new float[dimension];
 				for (int j = 0; j < dimension; j++) {
 					float vector = Float.parseFloat(subItem[j+1]);
@@ -132,7 +133,7 @@ public class Word2VEC {
 	 * 加载模型
 	 * 
 	 * @param path
-	 *            模型的路径
+	 *            模型的路径closestWordSet
 	 * @throws IOException
 	 */
 	public void loadJavaModel(String path) throws IOException {
@@ -238,6 +239,13 @@ public class Word2VEC {
 		TreeSet<WordEntry> result = new TreeSet<WordEntry>();
 
 		double min = Float.MIN_VALUE;
+		scan(center, resultSize, result, min);
+		result.pollFirst();
+
+		return result;
+	}
+
+	private void scan(float[] center, int resultSize, TreeSet<WordEntry> result, double min) {
 		for (Entry<String, float[]> entry : wordMap.entrySet()) {
 			float[] vector = entry.getValue();
 			float dist = 0;
@@ -253,9 +261,6 @@ public class Word2VEC {
 				min = result.last().getScore();
 			}
 		}
-		result.pollFirst();
-
-		return result;
 	}
 
 
@@ -275,21 +280,7 @@ public class Word2VEC {
 		TreeSet<WordEntry> result = new TreeSet<WordEntry>();
 
 		double min = Float.MIN_VALUE;
-		for (Entry<String, float[]> entry : wordMap.entrySet()) {
-			float[] vector = entry.getValue();
-			float dist = 0;
-			for (int i = 0; i < vector.length; i++) {
-				dist += center[i] * vector[i];
-			}
-
-			if (dist > min) {
-				result.add(new WordEntry(entry.getKey(), dist));
-				if (resultSize < result.size()) {
-					result.pollLast();
-				}
-				min = result.last().getScore();
-			}
-		}
+		scan(center, resultSize, result, min);
 		result.pollFirst();
 		return result;
 	}

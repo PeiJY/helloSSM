@@ -14,8 +14,8 @@ import java.io.IOException;
 
 
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * author Pei Jiyuan
+ * date 2019/4/27
  * desc
  */
 
@@ -47,7 +47,7 @@ public class PictureServiceImpl implements IPictureService {
     @Override
     public String insertPic(MultipartFile picturefile, long objectid,String name)  {
         Dommodity object = dommodityDao.selectDommodity(objectid);
-        if(object==null)return"-1";//商品不存在
+        if(object == null)return"-1";//商品不存在
         Picture pic = new Picture(objectid,name);
         pictureDao.insertPicture(pic);
         String filename = String.valueOf(pic.getPictureid())+"-"+pic.getName();
@@ -87,14 +87,14 @@ public class PictureServiceImpl implements IPictureService {
     @Override
     public int deletePic(long picid) {
         Picture pic = pictureDao.selectPicture(picid);
-        if(pic==null)return-1;
+        if(pic == null)return-1;
         String filename = pic.getFilename();
         pictureDao.deletePic(picid);
         File file=new File(picPath+"/"+filename);
-        if(file.exists()&&file.isFile()) {
+        if(file.exists() && file.isFile()) {
             file.delete();
         }
-        else return-2;
+        else return -2;
         return 0;
     }
 

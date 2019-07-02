@@ -1,10 +1,12 @@
 package com.hello.controller;
 
 import com.hello.model.ChatRecord;
+import com.hello.model.ReturnCode;
 import com.hello.model.Subscribe;
 import com.hello.model.User;
 import com.hello.service.ISocialService;
 import com.hello.service.IUserService;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
- * authod Pei Jiyuan
+ * author Pei Jiyuan
  * datetime 2019/4/27
  * desc
  */
@@ -29,66 +32,96 @@ public class SocialController {
     @Autowired
     private ISocialService socialService;
 
+    //private Map<String,String> ReturnCodeMap = new UserController().ReturnCodeMap;
+
+
+    public Map<String,String> ReturnCodeMap = ReturnCode.getReturnCodeMap();
+
     @RequestMapping ("charRecord")//用于接收数据库中发给自己的的聊天记录
     @ResponseBody
     public String login(@RequestParam long temporaryid) {
+        JSONObject jsonObject = new JSONObject();
+
+        /** login verify */
         User user = userService.findUserByTemporaryid(temporaryid);
-        if(user==null)return "{\"returncode\":\"201\"}";
-        ChatRecord records[] = socialService.getChatRecord(user);
-        //JSONObject jsonObj = JSONObject.fromObject("{\"returncode\":\"201\"}");
-        String result = "{\"returncode\":\"200\",\"records\":";
-        String rs = "[";
-        String dou = "";
-        for(ChatRecord i:records){
-            rs += dou + i.returnMassage();
-            dou = ",";
+        if(temporaryid == 0 || user == null){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnloginUser"));
+            return jsonObject.toString();
         }
-        rs += "]";
-        result+=rs+"}";
-        return  result;
-        //jsonObj.put("records",rs);
-        //return jsonObj.toString();
+
+        ChatRecord records[] = socialService.getChatRecord(user);
+        JSONArray chatRecordJSONArr = new JSONArray();
+        for(ChatRecord i:records){
+            chatRecordJSONArr.add(i.toString());
+        }
+        jsonObject.put("returncode",ReturnCodeMap.get("Success"));
+        jsonObject.put("records",chatRecordJSONArr);
+        return jsonObject.toString();
     }
 
     @RequestMapping ("subscribe")
     @ResponseBody
     public String subscribe(@RequestParam long temporaryid,@RequestParam String name) {
+        JSONObject jsonObject = new JSONObject();
+
+        /** login verify */
         User user = userService.findUserByTemporaryid(temporaryid);
-        if(user==null)return "{\"returncode\":\"201\"}";
-        int code = socialService.subscribe(user,name);
-        if(code >=0)return  "{\"returncode\":\"200\"}";
-        else return "{\"returncode\":\"201\"}";
+        if(temporaryid == 0 || user == null){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnloginUser"));
+            return jsonObject.toString();
+        }
+
+        int code = socialService.subscribe(user, name);
+        if(code == -1) {
+            jsonObject.put("returncode",ReturnCodeMap.get("DuplicatedSubscription"));
+            return jsonObject.toString();
+        }else {
+            jsonObject.put("returncode",ReturnCodeMap.get("Success"));
+            return jsonObject.toString();
+        }
     }
 
     @RequestMapping ("unSubscribe")
     @ResponseBody
     public String unSubscribe(@RequestParam long temporaryid,@RequestParam String name) {
-        User user = userService.findUserByTemporaryid(temporaryid);
-        if(user==null)return "{\"returncode\":\"201\"}";
-        int code = socialService.unSubscribe(user,name);
-        if(code >=0)return  "{\"returncode\":\"200\"}";
-        else return "{\"returncode\":\"201\"}";
-    }
+        JSONObject jsonObject = new JSONObject();
 
-    @RequestMapping ("subscribeList")
-    @ResponseBody
-    public String subscribeList(@RequestParam long temporaryid) {
+        /** login verify */
         User user = userService.findUserByTemporaryid(temporaryid);
-        if(user==null)return "{\"returncode\":\"201\"}";
-        Subscribe subscribeList[] = socialService.subscribeList(user);
-        //JSONObject jsonObj = JSONObject.fromObject("{\"returncode\":\"200\"}");
-        String result = "{\"returncode\":\"200\",\"subscribeList\":";
-        String rs = "[";
-        String dou = "";
-        for(Subscribe i:subscribeList){
-            rs += dou + i.returnMassage();
-            dou = ",";
+        if(temporaryid == 0 || user == null){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnloginUser"));
+            return jsonObject.toString();
         }
-        rs += "]";
-        result+=rs+"}";
-        //jsonObj.put("subscribeList",rs);
-        //return jsonObj.toString();
-        return result;
+
+        int code = socialService.unSubscribe(user,name);
+        if(code == -1) {
+            jsonObject.put("returncode",ReturnCodeMap.get("UnexistedOrder"));
+            return jsonObject.toString();
+        }else {
+            jsonObject.put("returncode",ReturnCodeMap.get("Success"));
+            return jsonObject.toString();
+        }
     }
 
+    @RequestMapping ("subscriptionList")
+    @ResponseBody
+    public String subscriptionList(@RequestParam long temporaryid) {
+        JSONObject jsonObject = new JSONObject();
+
+        /** login verify */
+        User user = userService.findUserByTemporaryid(temporaryid);
+        if(temporaryid == 0 || user == null){
+            jsonObject.put("returncode",ReturnCodeMap.get("UnloginUser"));
+            return jsonObject.toString();
+        }
+
+        Subscribe subscribeList[] = socialService.subscribeList(user);
+        JSONArray subscriptionJSONArr = new JSONArray();
+        for(Subscribe i:subscribeList){
+            subscriptionJSONArr.add(i.returnMassage());
+        }
+        jsonObject.put("returncode",ReturnCodeMap.get("Success"));
+        jsonObject.put("subscriptionList",subscriptionJSONArr);
+        return jsonObject.toString();
+    }
 }

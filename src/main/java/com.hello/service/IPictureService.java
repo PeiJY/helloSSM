@@ -5,8 +5,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * author Pei Jiyuan
+ * date 2019/4/27
  * desc
  */
 

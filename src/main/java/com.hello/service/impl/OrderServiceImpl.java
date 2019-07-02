@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * author Pei Jiyuan
+ * date 2019/4/27
  * desc
  */
 
@@ -31,36 +31,30 @@ public class OrderServiceImpl implements IOrderService {
     private IOrderDao orderDao;
 
     @Override
-    public long create(long temporaryid, String type, long  dommodityid,long number){
-        User user = userDao.findByTemporaryID(temporaryid);
-        if(user == null)return -1;//操作者用户不存在或登陆失效
+    public int create(User user, String type, long  dommodityid,long number){
         Dommodity dommodity = dommodityDao.selectDommodity(dommodityid);
-        if(dommodity == null)return -2;//没有此物品 }
-        if(dommodity.getOwner()==user.getId())return-3;//不能买自己的商品
+        if(dommodity == null)return -2;//没有此物品
+        if(dommodity.getOwner() == user.getId())return-3;//不能买自己的商品
         long price = dommodity.getPrice();
         long anotheruserid = dommodity.getOwner();
         Order order = new Order(type,dommodityid,user.getId(),anotheruserid,price,number);//String initiator, long dommodityid,long userid,long anotheruserid, long price,long number
         orderDao.insertOrder(order);
-        return order.getOrderid();
+        return (int)order.getOrderid();
     }
 
     @Override
-    public int cancel(long temporaryid,  long  orderid){
-        User user = userDao.findByTemporaryID(temporaryid);
-        if(user == null)return -1;//操作者用户不存在或登陆失效
+    public int cancel(User user,  long  orderid){
         Order order = orderDao.selectOrder(orderid);
         if(order == null)return -2;//不存在订单
         if(user.getId()!=order.getBuyerid() && user.getId()!=order.getSellerid())return -3;//订单不属于此用户
         if(!order.getStatus().equals("C"))return -4;//不是正在处理的订单不可取消
         order.cancel();
         orderDao.modifyOrder(order);
-        return 1;
+        return 0;
     }
 
     @Override
-    public int confirm(long temporaryid,  long  orderid){
-        User user = userDao.findByTemporaryID(temporaryid);
-        if(user == null)return -1;//操作者用户不存在或登陆失效
+    public int confirm(User user,  long  orderid){
         Order order = orderDao.selectOrder(orderid);
         if(order == null)return -2;//不存在订单
         if(user.getId()!=order.getBuyerid() && user.getId()!=order.getSellerid())return -3;//订单不属于此用户
@@ -68,13 +62,11 @@ public class OrderServiceImpl implements IOrderService {
         if(order.getStatus().equals("C"))return-5;//取消后不能确认
         order.confirm();
         orderDao.modifyOrder(order);
-        return 1;
+        return 0;
     }
 
     @Override
-    public Order[] findall(long temporaryid){
-        User user = userDao.findByTemporaryID(temporaryid);
-        if(user == null)return null;//操作者用户不存在或登陆失效
+    public Order[] findall(User user){
         Order[] orders1= orderDao.findAllAsSeller(user.getId());
         Order[] orders2= orderDao.findAllAsBuyer(user.getId());
         Order[] orders = new Order[orders1.length+orders2.length];
@@ -94,25 +86,24 @@ public class OrderServiceImpl implements IOrderService {
 
 
     @Override
-    public int undocancel(long temporaryid,  long  orderid){
-        User user = userDao.findByTemporaryID(temporaryid);
-        if(user == null)return -1;//操作者用户不存在或登陆失效
+    public int undocancel(User user,  long  orderid){
         Order order = orderDao.selectOrder(orderid);
         if(order == null)return -2;//不存在订单
         if(user.getId()!=order.getBuyerid() && user.getId()!=order.getSellerid())return -3;//订单不属于此用户
         if(!order.getStatus().equals("C"))return -4;//不是正在处理的订单不可取消
         order.undocancel();
         orderDao.modifyOrder(order);
-        return 1;
+        return 0;
     }
 
     @Override
-    public Order getorder(long temporaryid,  long  orderid){
-        User user = userDao.findByTemporaryID(temporaryid);
-        if(user == null)return null;//操作者用户不存在或登陆失效
+    public Order getorder(User user,  long  orderid){
         Order order = orderDao.selectOrder(orderid);
         if(order == null)return null;//不存在订单
-        if(user.getId()!=order.getBuyerid() && user.getId()!=order.getSellerid())return null;//订单不属于此用户
+        if(user.getId() != order.getBuyerid() && user.getId() != order.getSellerid()){
+            order.setBuyerid(-1);
+            return order;//订单不属于此用户
+        }
         return order;
     }
 

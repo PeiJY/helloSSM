@@ -1,8 +1,13 @@
 package com.hello.model;
 
+import net.sf.json.JSON;
+import net.sf.json.JSONObject;
+
+import java.util.jar.JarEntry;
+
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * author Pei Jiyuan
+ * date 2019/4/27
  * desc
  */
 
@@ -54,10 +59,10 @@ public class Subscription {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userid='" + String.valueOf(userid) + '\'' +
-                ", dommodityid='" + String.valueOf(dommodityid) + '\'' +
-                '}';
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", String.valueOf(id));
+        jsonObject.put("userid", String.valueOf(userid));
+        jsonObject.put("dommodityid", String.valueOf(dommodityid));
+        return jsonObject.toString();
     }
 }

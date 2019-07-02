@@ -5,8 +5,8 @@ import com.hello.model.Subscription;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * author Pei Jiyuan
+ * date 2019/4/27
  * desc
  */
 

@@ -7,8 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * author Pei Jiyuan
+ * date 2019/4/27
  * desc
  */
 
@@ -21,12 +21,9 @@ public class Picture {
 
 //private byte[] origPic;
 
-
     public String getName() {
         return name;
     }
-
-
 
     public Picture(MultipartFile pic,long objectid ,String name){//,byte[] origPic) {
         this.objectid = objectid;
@@ -42,8 +39,6 @@ public class Picture {
     }
 
     public Picture(){};
-
-
 
     public String getFilename() {
         return filename;

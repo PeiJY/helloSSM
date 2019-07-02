@@ -1,22 +1,28 @@
 package com.hello.controller;
 
+import com.hello.model.ReturnCode;
 import com.hello.model.User;
 import com.hello.service.IUserService;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+import java.util.Map;
 
 
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
- * desc
+ * author Pei Jiyuan
+ * datetime 2019/6/28
  */
+
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
+    public Map<String,String> ReturnCodeMap = ReturnCode.getReturnCodeMap();
+
     @Resource
     @Autowired
     private IUserService userService;
@@ -25,30 +31,42 @@ public class UserController {
     @ResponseBody
     public String login(@RequestParam String username,
                       @RequestParam String password, @RequestParam String email){
+        // TODO handle the cast that multi user have same username, but just one is linked
         User user = this.userService.checkLogin(username,password,email);
-        if(user.getId()>0){
-            System.out.println("Correct, login successfully");
-            return "{\"returncode\":\"200\",\"userinfo\":" + user.returnMassage()+"}";
+        JSONObject jsonObject = new JSONObject();
+        switch ((int)user.getId()){
+            case -1:
+                jsonObject.put("returncode",ReturnCodeMap.get("UnlinkedAccount"));
+                break;
+            case -2:
+                jsonObject.put("returncode",ReturnCodeMap.get("IncorrectUserInfo"));
+                break;
+            case -3:
+                jsonObject.put("returncode",ReturnCodeMap.get("IncorrectLoginInfo"));
+                break;
+            default:
+                jsonObject.put("returncode",ReturnCodeMap.get("Success"));
+                jsonObject.put("userinfo",user.toString());
         }
-        else if(user.getId() ==-1){
-            System.out.println("User email is unlinked");
-            return "{\"returncode\":\"201\"}";
-        }
-        else{
-            System.out.println(username);
-            System.out.println(password);
-            System.out.println("Username or password wrong");
-            return "{\"returncode\":\"201\"}";
-        }
+        return jsonObject.toString();
     }
 
     @RequestMapping("logout")
     @ResponseBody
     public String register(@RequestParam long temporaryid){
-        System.out.println("logout ");
-        long result = this.userService.logout(temporaryid);
-        if(result == 0)return "{\"returncode\":\"200\"}";
-        else return "{\"returncode\":\"201\"}";
+        JSONObject jsonObject = new JSONObject();
+        int result = (int)this.userService.logout(temporaryid);
+        switch (result){
+            case 0:
+                jsonObject.put("returncode",ReturnCodeMap.get("Success"));
+                break;
+            case -1:
+                jsonObject.put("returncode",ReturnCodeMap.get("UnloginUser"));
+                break;
+            default:
+                jsonObject.put("returncode",ReturnCodeMap.get("UnknownReason"));
+        }
+        return jsonObject.toString();
     }
 
     @RequestMapping("register")
@@ -56,92 +74,109 @@ public class UserController {
     public String register(@RequestParam String username,
                          @RequestParam String password,
                            @RequestParam String email) {
-        System.out.println("Successfully register");
-        String result = "";
+        JSONObject jsonObject = new JSONObject();
         long code = this.userService.insertUser(username, password, email);
-        if (code > 0) {
-            result +="database update successful, no duplicate username and email.";
-            result += this.userService.sendEmail(code, username, password, email);
-            result += "Emial sending finished, register finished.";
-            return "{\"returncode\":\"200\",\"log\":\""+result+"\"}";
+
+        switch ((int)code){
+            case -1:
+                jsonObject.put("returncode",ReturnCodeMap.get("DuplicatedUsername"));
+                break;
+            case -2:
+                jsonObject.put("returncode",ReturnCodeMap.get("DuplicatedEmail"));
+                break;
+            default:
+                String result = "";
+                result +="Database update successful, no duplicate username and email.";
+                result += this.userService.sendEmail(code, username, password, email);
+                result += "Emial sending finished, register finished.";
+                jsonObject.put("returncode",ReturnCodeMap.get("Success"));
+                //jsonObject.put("log",result);
+                System.out.println("Register email sending log : "+ result);
+                return jsonObject.toString();
         }
-        if (code == -1) return "{\"returncode\":\"201\",\"report\":\"username duplicate\"}";//用户名已存在
-        if (code == -2) return "{\"returncode\":\"201\",\"report\":\"email address duplicate\"}";//邮箱已被其他账号绑定
-        else return "{\"returncode\":\"201\"\"report\":\"unknow resaon\"}";//未知原因
+        return jsonObject.toString();
     }
 
     @RequestMapping("emailLink")
     @ResponseBody
-    public String emaillink(@RequestParam String username,@RequestParam long code){
-        System.out.println("Successfully emaillink");
-        int check = this.userService.emailLink(code,username);
-        if(check==0) {
-            System.out.println("link successful , code is rigth");
-            return "{\"returncode\":\"200\"}";
+    public String emaillink(@RequestParam String username, @RequestParam long code){
+        JSONObject jsonObject = new JSONObject();
+        int check = this.userService.emailLink(code, username);
+
+        switch (check){
+            case 0:
+                jsonObject.put("returncode",ReturnCodeMap.get("Success"));
+                break;
+            case -1:
+                jsonObject.put("returncode",ReturnCodeMap.get("IncorrectBindingCode"));
+                break;
+            case -2:
+                jsonObject.put("returncode",ReturnCodeMap.get("UnexistedUsername"));
+                break;
+            case -3:
+                jsonObject.put("returncode",ReturnCodeMap.get("DuplicatedEmail"));
+                break;
+            case -4:
+                jsonObject.put("returncode",ReturnCodeMap.get("DuplicatedUsername"));
+                break;
+            default:
+                jsonObject.put("returncode",ReturnCodeMap.get("UnknownReason"));
         }
-        if(check==1) {
-            System.out.println("link fail , username doesnot exist");
-            return "{\"returncode\":\"201\"}";
-        }
-        if(check==2) {
-            System.out.println("link fail , code wrong");
-            return "{\"returncode\":\"201\"}";
-        }
-        else {
-            System.out.println("link fail , email address is aready linked by others");
-            return "{\"returncode\":\"201\"}";
-        }
+        return jsonObject.toString();
     }
 
     @RequestMapping("resendEmail")
     @ResponseBody
-    public String resendEmail(@RequestParam String username,@RequestParam String password){
+    public String resendEmail(@RequestParam String username, @RequestParam String password){
+        JSONObject jsonObject = new JSONObject();
         int check = this.userService.resendEmail(username,password);
-        if(check==0) {
-            System.out.println("resend successfully");
-            return "{\"returncode\":\"200\"}";
+        switch (check) {
+            case 0:
+                jsonObject.put("returncode", ReturnCodeMap.get("Success"));
+                break;
+            case -1:
+                jsonObject.put("returncode", ReturnCodeMap.get("IncorrectUserInfo"));
+                break;
+            case -2:
+                jsonObject.put("returncode", ReturnCodeMap.get("UnknownReason"));
+                break;
         }
-        else {
-            System.out.println("resend fail");
-            return "{\"returncode\":\"201\"}";
-        }
+        return jsonObject.toString();
     }
 
     @RequestMapping("changeEmail")
     @ResponseBody
-    public String changeEmail(@RequestParam String username,@RequestParam String password,@RequestParam String email){
+    public String changeEmail(@RequestParam String username,
+                              @RequestParam String password,
+                              @RequestParam String email){
+        JSONObject jsonObject = new JSONObject();
         int check = this.userService.changeEmail(username,password,email);
-        if(check==0) {
-            System.out.println("change successfully");
-            return "{\"returncode\":\"200\"}";
+        switch (check) {
+            case 0:
+                jsonObject.put("returncode", ReturnCodeMap.get("Success"));
+                break;
+            case -1:
+                jsonObject.put("returncode", ReturnCodeMap.get("IncorrectUserInfo"));
+                break;
         }
-        else {
-            System.out.println("change fail");
-            return "{\"returncode\":\"201\"}";
-        }
+        return jsonObject.toString();
     }
 
     @RequestMapping("changePassword")
     @ResponseBody
-    public String changePassword(@RequestParam String username,@RequestParam String password,@RequestParam String newpassword){
+    public String changePassword(@RequestParam String username,
+                                 @RequestParam String password,
+                                 @RequestParam String newpassword){
         int check = this.userService.changePassword(username,password,newpassword);
-        if(check==0) {
-            System.out.println("change successfully");
-            return "{\"returncode\":\"200\"}";
+        JSONObject jsonObject = new JSONObject();
+        switch (check) {
+            case 0:
+                jsonObject.put("returncode", ReturnCodeMap.get("Success"));
+                break;
+            case -1:
+                jsonObject.put("returncode", ReturnCodeMap.get("IncorrectUserInfo"));
+                break;
         }
-        else {
-            System.out.println("change fail");
-            return "{\"returncode\":\"201\"}";
-        }
+        return jsonObject.toString();
     }
-
-    @RequestMapping("json")
-    @ResponseBody
-    public String jsonTest(@RequestBody String requestuser){
-        System.out.println("json controll call successful");
-        System.out.println(requestuser);
-        System.out.println(requestuser.substring(4,15));
-        return requestuser;
-    }
-
 }

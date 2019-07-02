@@ -4,8 +4,8 @@ import com.hello.model.ChatRecord;
 import com.hello.model.Subscribe;
 import com.hello.model.User;
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * author Pei Jiyuan
+ * date 2019/4/27
  * desc
  */
 

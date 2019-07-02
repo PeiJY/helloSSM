@@ -1,10 +1,10 @@
 package com.hello.model;
 
-import java.util.Date;
+import net.sf.json.JSONObject;
 
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * author Pei Jiyuan
+ * date 2019/4/27
  * desc
  */
 
@@ -16,6 +16,8 @@ public class User {
     private long code;
     private long linked;
     private long temporaryid;
+
+    //TODO what code is for
 
     public long getTemporaryid(){return temporaryid;}
 
@@ -80,22 +82,12 @@ public class User {
 
     public long getCode(){return this.code;}
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", password='" + password + '\'' +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", code='" + String.valueOf(code) + '\'' +
-                ",temporaryid= '"+ String.valueOf(temporaryid)+"\'"+
-                '}';
-    }
 
-    public String returnMassage(){
-        return "{"+
-                "\"username\":\"" + username + '\"' +
-                ",\"email\":\"" + email + '\"' +
-                ",\"temporaryid\":\""+ String.valueOf(temporaryid)+"\""+"}";
+    public String toString(){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("username",username);
+        jsonObject.put("email",email);
+        jsonObject.put("temporaryid",String.valueOf(temporaryid));
+        return jsonObject.toString();
     }
 }

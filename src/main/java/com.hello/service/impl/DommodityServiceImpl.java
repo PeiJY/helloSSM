@@ -16,8 +16,8 @@ import java.util.Date;
 import java.util.Random;
 
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * author Pei Jiyuan
+ * date 2019/4/27
  * desc
  */
 
@@ -37,12 +37,10 @@ public class DommodityServiceImpl implements IDommodityService {
 
     @Override
     public long insertDommodity(String name,
-                                String description, long temporaryid,
+                                String description, User owner,
                                 Status status,String paytype, DommodityTpye[] type,
                                 String putawayTime, String availableTime,
                                long price, String address,String operation){
-        User owner = userDao.findByTemporaryID(temporaryid);
-        if(owner == null)return -1;//操作者用户不存在或登陆失效
         long ownerid = owner.getId();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss");
         Date dputawayTime = null;
@@ -55,7 +53,7 @@ public class DommodityServiceImpl implements IDommodityService {
             System.out.println(e.getMessage());
         }
         Dommodity dommodity = new Dommodity(2,name,description,ownerid,status,paytype,dputawayTime,davailableTime,operation);
-        if(dommodity==null)return -2;//商品信息有误
+        if(dommodity == null)return -2;//商品信息有误
         System.out.println(dommodity.toString());
         dommodity.setPrice(price);
         dommodity.setAddress(address);
@@ -99,9 +97,7 @@ public class DommodityServiceImpl implements IDommodityService {
     }
 
     @Override
-    public int report(long dommodityid,long temporaryid,String reason){
-        User reporter = userDao.findByTemporaryID(temporaryid);
-        if(reporter == null)return -1;//操作者用户不存在或登陆失效
+    public int report(long dommodityid,User reporter,String reason){
         Dommodity dommodity = dommodityrDao.selectDommodity(dommodityid);
         if(dommodity == null) return -2;//m没有此物品
         long reporterid = reporter.getId();
@@ -113,12 +109,10 @@ public class DommodityServiceImpl implements IDommodityService {
 
     @Override
     public int modityDommodity(String name,
-                               String description, long temporaryid,
+                               String description, User owner,
                                Status status,String paytype, DommodityTpye[] type,
                                String putawayTime, String availableTime,
                                long price, String address,String operation){
-        User owner = userDao.findByTemporaryID(temporaryid);
-        if(owner == null)return -1;//操作者用户不存在或登陆失效
         long ownerid = owner.getId();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss");
         Date dputawayTime = null;
@@ -147,11 +141,7 @@ public class DommodityServiceImpl implements IDommodityService {
     }
 
     @Override
-    public int subscribe(long dommodityid, long temporaryid, String time){
-        User user = userDao.findByTemporaryID(temporaryid);
-        if(user == null){
-            return -1;//没有此用户，或未登录
-        }
+    public int subscribe(long dommodityid, User user, String time){
         long userid = user.getId();
         Dommodity dommodity = dommodityrDao.selectDommodity(dommodityid);
         if(dommodity == null){
@@ -163,11 +153,7 @@ public class DommodityServiceImpl implements IDommodityService {
     }
 
     @Override
-    public int statusChange(long id,long temporaryid,Status status){
-        User user = userDao.findByTemporaryID(temporaryid);
-        if(user == null){
-            return -1;//没有此用户，或未登录
-        }
+    public int statusChange(long id,User user,Status status){
         long userid = user.getId();
         Dommodity dommodity = dommodityrDao.selectDommodity(id);
         if(dommodity == null){

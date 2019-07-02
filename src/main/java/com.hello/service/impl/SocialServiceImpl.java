@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 
 /**
- * authod Pei Jiyuan
- * datetime 2019/4/27
+ * author Pei Jiyuan
+ * date 2019/4/27
  * desc
  */
 
@@ -40,18 +40,18 @@ public class SocialServiceImpl implements ISocialService {
     @Override
     public int subscribe(User user,String name){
         Subscribe oldsubs = socialDao.getSubscribe(user.getId(),name);
-        if(oldsubs!=null)return-1;
+        if(oldsubs != null) return -1;
         Subscribe subs = new Subscribe(user.getId(),name);
         socialDao.subscribe(subs);
-        return 1;
+        return 0;
     }
 
     @Override
     public int unSubscribe(User user,String name){
         Subscribe subs= socialDao.getSubscribe(user.getId(),name);
-        if(subs==null)return-1;
+        if(subs == null) return-1;
         socialDao.unSubscribe(subs.getId());
-        return 1;
+        return 0;
     }
 
     @Override
